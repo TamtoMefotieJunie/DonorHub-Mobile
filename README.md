@@ -1,0 +1,1 @@
+This is the mobile version of iKare, responsible for permitting online consultations through text messages or video conferencing, follow-ups through regular questionaires, searching of nearby hospitals and pharmacies, managing electronic health records and disease prediction.
