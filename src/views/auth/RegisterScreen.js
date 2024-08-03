@@ -21,11 +21,11 @@ function RegisterScreen() {
         <ScrollView>
             <View style={tw`p-8`}>
                 <Image 
-                 source={require("../../../assets/images/splash2.png")}
+                 source={require("../../../assets/images/im6.jpg")}
                  resizeMode="cover"
-                 style={tw`self-center w-full h-60`}
+                 style={tw`self-center w-100 h-60`}
                 />
-                <Text style={tw`text-[#0C3778] text-left text-10 font-bold`}>Create Account</Text>
+                <Text style={tw`text-[#54C2B5] text-9 text-center font-bold`}>Sign Up</Text>
                  <Formik
                   initialValues={initialValues}
                   onSubmit={(values) => onSubmit(values)}
@@ -46,6 +46,7 @@ function RegisterScreen() {
                                 errors.emailAddress && touched.emailAddress && values.emailAddress.trim().length == 0 ||
                                 errors.telNumber && touched.telNumber && values.telNumber.trim().length == 0 ||
                                 errors.password && touched.password && values.password.trim().length == 0 ||
+                                errors.bloodGroup && touched.bloodGroup && values.bloodGroup.trim().length == 0 ||
                                 errors.confirmPassword && touched.confirmPassword && values.confirmPassword.trim().length == 0
                             ) && <Text style={tw`text-red-600`}>* Required</Text>
                           }
@@ -86,6 +87,18 @@ function RegisterScreen() {
                                 errors.telNumber && touched.telNumber && <Text style={tw`text-red-600 mt-2`}>{errors.telNumber}</Text>
                             }
                             <FormInput 
+                                placeholder="Blood Group"
+                                type="tel"
+                                value={values.telNumber}
+                                onChange={handleChange("telNumber")}
+                                onBlur={handleBlur("telNumber")}
+                                name="phone-pad"
+                                icon={<MaterialIcons name="bloodtype" size={24} style={tw`text-[#8B8989]`} />}
+                            />
+                            {
+                                errors.bloodGroup && touched.bloodGroup && <Text style={tw`text-red-600 mt-2`}>{errors.bloodGroup}</Text>
+                            }
+                            <FormInput 
                                  placeholder="Password"
                                  type="password"
                                  value={values.password}
@@ -117,9 +130,9 @@ function RegisterScreen() {
                     )}
                  </Formik>
                  <View  style={tw`flex flex-row font-semibold justify-between items-center w-[50%] mt-5`}>
-               <Text style={tw`text-5 font-semibold`}>Got an account ? </Text>
+               <Text style={tw`text-5 w-45 font-semibold`}> Have an account ? </Text>
                  <TouchableOpacity>
-                    <Text style={tw`text-[#0C3778] font-semibold text-5`}>Log In</Text>
+                    <Text style={tw`text-[#CF3304] font-semibold text-5`}>Log In</Text>
                     </TouchableOpacity>
                 </View>
             </View>

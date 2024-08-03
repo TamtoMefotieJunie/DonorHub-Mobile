@@ -19,6 +19,9 @@ export const validationSchema =  Yup.object().shape({
                 .required("*")
                 .min(9, "Enter a Cameroonian Phone Number")
                 .max(9, "Enter a Cameroonian Phone Number")
-                .test("validate-phone", "Enter either MTN, Orange or CAMTEL", (tel) => (validateMTN(tel) && validateOrange(tel) && validateCamtel(tel)) == false)
-})
+                .test("validate-phone", "Enter either MTN, Orange or CAMTEL", (tel) => (validateMTN(tel) && validateOrange(tel) && validateCamtel(tel)) == false),
+    bloodGroup: Yup.string()
+                .oneOf(["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"], "Invalid blood group")
+                .required("*")
+ });
 

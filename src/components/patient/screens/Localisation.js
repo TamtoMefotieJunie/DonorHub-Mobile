@@ -2,14 +2,14 @@ import React from 'react'
 import { Text } from 'react-native'
 import { View } from 'react-native'
 
-function VideoCall() {
+function Localisation() {
   return (
     <>
         <View>
-            <Text>Video Calls</Text>
+            
         </View>
     </>
   )
 }
 
-export default VideoCall
+export default Localisation

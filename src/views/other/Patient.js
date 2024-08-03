@@ -8,9 +8,10 @@ import Profile from "../../components/patient/drawerScreens/Profile"
 import { StatusBar } from 'expo-status-bar'
 import {MaterialIcons} from "@expo/vector-icons"
 import AppointmentNavigation from '../../components/patient/drawerScreens/navigation/AppointmentNavigation'
-import ChatNavigation from '../../components/patient/drawerScreens/navigation/ChatNavigation'
-import PharmacyNavigation from '../../components/patient/drawerScreens/navigation/PharmacyNavigation'
-import Emergency from '../../components/patient/drawerScreens/Emergency'
+import DonorNavigation from '../../components/patient/drawerScreens/navigation/DonorNavigation'
+import HospitalNavigation from '../../components/patient/drawerScreens/navigation/HospitalNavigation'
+import Posts from '../../components/patient/drawerScreens/Posts'
+
 
 function Patient() {
     const Drawer = createDrawerNavigator()
@@ -20,10 +21,10 @@ function Patient() {
         <StatusBar style="light" />
         <Drawer.Navigator
           screenOptions={{
-            headerTitle: "iKare",
+            headerTitle: "DonorHub",
             headerTintColor: "#FFFFFF",
             headerTitleStyle: tw `text-white`,
-            headerStyle: tw`bg-[#0C3778]`,
+            headerStyle: tw`bg-[#54C2B5]`,
             headerRight: () => {
                 return (
                     <>
@@ -39,11 +40,11 @@ function Patient() {
           drawerContent={(props) => <PatientDrawerContent {...props} />}
         >
             <Drawer.Screen name='Home' component={Home} />
-            <Drawer.Screen name='Pharmacies' component={PharmacyNavigation} />
-            <Drawer.Screen name='Appointments' component={AppointmentNavigation} />
-            <Drawer.Screen name='Emergency' component={Emergency} />
-            <Drawer.Screen name='Chat' component={ChatNavigation} />
+            <Drawer.Screen name='Hospitals' component={HospitalNavigation} />
+            <Drawer.Screen name='Potential Donors' component={DonorNavigation} />
+            <Drawer.Screen name='Posts' component={Posts} />
             <Drawer.Screen name='Profile' component={Profile} />
+            {/* <Drawer.Screen name='Posts' component={AppointmentNavigation} /> */}
         </Drawer.Navigator>
     </NavigationContainer>
     </>

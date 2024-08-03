@@ -27,12 +27,18 @@ function LoginScreen() {
     <>
       <ScrollView>
          <View style={tw`p-8 flex flex-col justify-between h-full w-full`}>
-            <Image 
-             source={require("../../../assets/images/login.png")}
-             resizeMode="contain"
-             style={tw`w-full h-50 mt-7`}
-            />
-            <Text style={tw`text-[#0C3778] text-left text-10 font-bold`}>Sign In</Text>
+            <View style={tw`bg w-100 flex flex-row`}>
+              <Image 
+              source={require("../../../assets/images/logo4.png")}
+              resizeMode="contain"
+              style={tw` w-50 h-50 mt-5`}
+              />
+              <View style>
+                <Text style={tw`text-[#CF3304] text-center pt-17 text-15 absolute left-[-13] font-bold`}>DH</Text>
+                <Text style={tw`text-[#808080] text-left text-5 absolute left-[-13] top-33 pl-1 font-bold`}>DonorHub</Text>
+              </View>
+            </View>
+            <Text style={tw`text-[#54C2B5] text-center text-10 font-bold`}>Sign In</Text>
              <Formik
               onSubmit={(values) => onSubmit(values)}
               validationSchema={validationSchema}
@@ -56,7 +62,7 @@ function LoginScreen() {
                value={values.emailMatricle}
                onBlur={handleBlur("emailMatricle")}
                onChange={handleChange("emailMatricle")}
-               placeholder="Email / Matricle"
+               placeholder="Email"
               />
               {
                 errors.emailMatricle && touched.emailMatricle && <Text style={tw`text-red-600 mb-3`}>{errors.emailMatricle}</Text>
@@ -73,7 +79,7 @@ function LoginScreen() {
                 errors.password && touched.emailMatricle && <Text style={tw`text-red-600 mb-3`}>{errors.password}</Text>
               }
              <TouchableOpacity style={tw`mt-5 w-full`}>
-                    <Text style={tw`text-4 text-right text-[#0C3778] font-semibold`}>Forgot password ?</Text>
+                    <Text style={tw`text-4 text-right text-[#54C2B5] font-semibold`}>Forgot password ?</Text>
              </TouchableOpacity>
                <PrimaryButton 
                 name="Login"
@@ -83,9 +89,9 @@ function LoginScreen() {
                     )}
             </Formik>
                <View  style={tw`flex flex-row font-semibold justify-between items-center w-[50%] mt-5`}>
-               <Text style={tw`text-5 font-semibold`}>New to iKare ? </Text>
+               <Text style={tw`text-5 w-53 text-[#808080] font-semibold`}>New to DonorHub ? </Text>
                  <TouchableOpacity>
-                    <Text style={tw`text-[#0C3778] font-semibold text-5`}>Register</Text>
+                    <Text style={tw`text-[#54C2B5] font-semibold text-5`}>Register</Text>
                     </TouchableOpacity>
                 </View>
              </View>

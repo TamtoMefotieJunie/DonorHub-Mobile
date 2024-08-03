@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "iKare_Mobile",
-    "slug": "iKare_Mobile",
+    "name": "DonorHub_mobile",
+    "slug": "DonorHub_mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

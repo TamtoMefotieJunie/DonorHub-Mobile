@@ -4,8 +4,8 @@ import tw from "twrnc"
 import {MaterialIcons, Entypo, FontAwesome} from "@expo/vector-icons"
 import MessageCard from '../cards/MessageCard'
 
-function ChatScreen({navigation, route}) {
-    const {contact} = route.params
+function DonorScreen({navigation, route}) {
+    const {donor} = route.params
     const [newMessage, setNewMessage] = useState("")
     const [messages, setMessages] = useState([
         {
@@ -36,7 +36,7 @@ function ChatScreen({navigation, route}) {
               </TouchableOpacity>
              <MaterialIcons name="account-circle" size={40} color="white" />
              <View>
-             <Text style={tw`text-white text-4 font-semibold`}>{contact.name}</Text>
+             <Text style={tw`text-white text-4 font-semibold`}>{donor.name}</Text>
             <Text style={tw`text-white text-3`}>5 mins ago</Text>
             </View>
         </View>
@@ -84,4 +84,4 @@ function ChatScreen({navigation, route}) {
   )
 }
 
-export default ChatScreen
+export default DonorScreen

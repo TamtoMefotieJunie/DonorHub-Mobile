@@ -5,12 +5,12 @@ import tw from "twrnc"
 function SecondaryButton({name, onPress}) {
     return (
       <>
-        <View style={tw`mt-5`}>
+        <View style={tw`mt-1 pl-2 pb-2`}>
           <TouchableOpacity
           onPress={onPress}
-           style={tw`p-2 w-[50%] rounded-5 bg-[#0C3778]`}
+           style={tw`p-2 w-[25%] rounded-3xl bg-[#CF3304]`}
           >
-              <Text style={tw`text-white text-5 text-center font-bold`}>{name}</Text>
+              <Text style={tw`text-white text-sm text-center font-bold`}>{name}</Text>
           </TouchableOpacity>
         </View>
       </>

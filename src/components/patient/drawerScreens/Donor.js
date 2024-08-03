@@ -4,8 +4,8 @@ import tw from "twrnc"
 import ContactCard from '../cards/ContactCard'
 import {MaterialIcons} from "@expo/vector-icons"
 
-function Chat({navigation}) {
-  const [contact, setContact] = useState([
+function Donor({navigation}) {
+  const [donor, setDonor] = useState([
     {
          name:"Dr. Sandra Norvelle",
          numberUnRead:5,
@@ -71,10 +71,10 @@ time: new Date().getHours()+":"+new Date().getMinutes()
 },
 
 ])
-const [enteredContact, setEnteredContact] = useState("")
-const handleSearchContact = () => {}
-const handleOpenSingleContact = (contact) => {
-  navigation.navigate("ChatScreen", {contact})
+const [enteredDonor, setEnteredDonor] = useState("")
+const handleSearchDonor = () => {}
+const handleOpenSingleDonor = (donor) => {
+  navigation.navigate("DonorScreen", {donor})
 }
   return (
     <>
@@ -86,26 +86,26 @@ const handleOpenSingleContact = (contact) => {
              style={tw`text-gray-400`}
             name='search' size={24} />
             <TextInput 
-             value={enteredContact}
-             onChangeText={(text) =>{setEnteredContact(text); handleSearchContact()}}
-             placeholder='Search contact or message'
+             value={enteredDonor}
+             onChangeText={(text) =>{setEnteredDonor(text); handleSearchDonor()}}
+             placeholder='Search donor or message'
              style={tw`w-[85%]`}
             />
           </View>
         </View>
         <ScrollView>
           {
-            contact?.map((singleContact, index) => {
+            donor?.map((singleDonor, index) => {
               return (
                 <>
         <ContactCard 
          key={index}
-         name={singleContact.name}
-         numberUnRead={singleContact.numberUnRead}
-         image={singleContact.image}
-         lastMessage={singleContact.lastMessage}
-         time={singleContact.time}
-         onPress={() => handleOpenSingleContact(singleContact)}
+         name={singleDonor.name}
+         numberUnRead={singleDonor.numberUnRead}
+         image={singleDonor.image}
+         lastMessage={singleDonor.lastMessage}
+         time={singleDonor.time}
+         onPress={() => handleOpenSingleDonor(singleDonor)}
         />        
                 </>
               )
@@ -118,4 +118,4 @@ const handleOpenSingleContact = (contact) => {
   )
 }
 
-export default Chat
+export default Donor

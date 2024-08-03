@@ -1,15 +1,15 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import Chat from '../Chat'
+import Donor from '../Donor'
 import tw from "twrnc"
-import ChatScreen from '../../screens/ChatScreen'
+import DonorScreen from '../../screens/DonorScreen'
 
-function ChatNavigation() {
+function DonorNavigation() {
     const Stack = createStackNavigator()
   return (
     <>
         <Stack.Navigator
-         initialRouteName='Chat'
+         initialRouteName='Donor'
          screenOptions={{
             headerShown: true
          }}
@@ -18,13 +18,13 @@ function ChatNavigation() {
              options={{
                 headerShown: false,
              }}
-            name='Contacts' component={Chat} />
-            <Stack.Screen name='ChatScreen' options={{
+            name='Donor' component={Donor} />
+            <Stack.Screen name='DonorScreen' options={{
                 headerShown: false
-            }} component={ChatScreen} />
+            }} component={DonorScreen} />
         </Stack.Navigator>
     </>
     )
 }
 
-export default ChatNavigation
+export default DonorNavigation

@@ -10,20 +10,18 @@ function PatientDrawerContent(props) {
     <>
         <DrawerContentScrollView {...props} 
         style={tw`bg-white`}>
-            {/* <View style={tw`p-4`}>
-                <Text style={tw`text-10 font-bold  ml-5`}>iKare</Text>
-            </View> */}
+            
             <View style={tw`p-4 flex flex-col justify-between items-center`}>
-                <MaterialIcons name="account-circle" size={150} style={tw`text-gray-700`} />
+                <View style={tw`rounded-full w-35 h-35 bg-[#E5E5E5] justify-center`}>
+                    <Text style={tw `text-[#CF3304] text-center  text-20 font-bold`}>DH</Text>
+                </View>
+                
                 <View>
-                    <Text style={tw` text-center text-5 font-bold`}>Ange Sepdeu</Text>
-                    <Text style={tw` text-center text-4`}>chriskameni25@gmail.com</Text>
+                    <Text style={tw` text-center text-5 font-bold`}>Tamto Junie</Text>
+                    <Text style={tw` text-center text-4`}>juniemefotie91@gmail.com</Text>
                 </View>
             </View>
-              <Drawer.Section
-              >
-                <View>
-                </View>
+              <Drawer.Section>
                 <DrawerItem
                     label="Home"
                     labelStyle={tw`font-bold text-gray-700`}
@@ -32,32 +30,26 @@ function PatientDrawerContent(props) {
                     onPress={() => props.navigation.navigate("Home")}
                 />
                 <DrawerItem
-                    label="Pharmacies"
+                    label="Hospitals"
                     labelStyle={tw` font-bold text-gray-700`}
-                    icon={() => <MaterialIcons name="storefront" size={24} 
+                    icon={() => <MaterialIcons name="local-hospital" size={24} 
                     style={tw`text-gray-700`} />}
-                    onPress={() => props.navigation.navigate("Pharmacies")}
+                    onPress={() => props.navigation.navigate("Hospitals")}
+                />
+                
+                <DrawerItem
+                    label="Potential Donors"
+                    labelStyle={tw` font-bold text-gray-700`}
+                    icon={() => <MaterialIcons name="person-add" size={24} 
+                    style={tw`text-gray-700`} />}
+                    onPress={() => props.navigation.navigate("Potential Donors")}
                 />
                 <DrawerItem
-                    label="Appointments"
-                    labelStyle={tw` font-bold text-gray-700`}
-                    icon={() => <MaterialIcons name="schedule" size={24} 
-                    style={tw`text-gray-700`} />}
-                    onPress={() => props.navigation.navigate("Appointments")}
-                />
-                <DrawerItem
-                    label="Emergency"
-                    labelStyle={tw` font-bold text-gray-700`}
-                    icon={() => <MaterialIcons name="error-outline" size={24} 
-                    style={tw`text-gray-700`} />}
-                    onPress={() => props.navigation.navigate("Emergency")}
-                />
-                <DrawerItem
-                    label="Chat"
+                    label="Posts"
                     labelStyle={tw`text-gray-700 font-bold`}
-                    icon={() => <MaterialIcons name="chat" size={24} 
+                    icon={() => <MaterialIcons name="post-add" size={24} 
                     style={tw`text-gray-700`} />}
-                    onPress={() => props.navigation.navigate("Chat")}
+                    onPress={() => props.navigation.navigate("Posts")}
                 />
                 <DrawerItem
                     label="Profile"

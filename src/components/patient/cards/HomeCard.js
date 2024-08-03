@@ -1,17 +1,23 @@
 import React from 'react'
 import { Text, View } from 'react-native'
-import tw from "twrnc"
+import tw, { style } from "twrnc"
 
-function HomeCard({cardTitle, cardDesc, icon}) {
+const HomeCard = ({ icon, borderWidth, borderColor, cardDesc, cardTitle, number }) => {
+  const dynamicStyles = {
+    borderWidth: borderWidth,
+    borderColor: borderColor,
+  };
   return (
     <>
-        <View style={tw`flex mt-5 flex-row items-center rounded-4 bg-[#D9D9D9]`}>
-            <View style={tw`bg-[#0C3778] justify-center items-center w-20 h-20 rounded-4`}>
+        <View style={[tw`h-[20%] mt-5 flex flex-column items-left pt-2 rounded-4 bg-[#E5E5E5]`]}>
+              <View style={tw`flex flex-row items-center justify-around border-box `}>
                 {icon}
-            </View>
-            <View style={tw`flex flex-col left-6`}>
-                <Text style={tw`text-5 font-semibold`}>{cardTitle}</Text>
-                <Text style={tw`text-4 font-semibold text-[#0C3778]`}>{cardDesc}</Text>
+                <Text style={tw`text-5 font-bold ml-15 text-justify text-[#54C2B5]`}>{cardTitle}</Text>
+              </View>
+            <View style={tw`flex flex-row items-center justify-around border-box h-15 align-center`}>
+              
+                <Text style={tw`text-4 font-semibold text-justify text-lg`}>{cardDesc}</Text>
+                <Text style={tw`text-5 font-bold text-justify text-[#54C2B5]`}>{number}</Text>
             </View>
         </View>
     </>

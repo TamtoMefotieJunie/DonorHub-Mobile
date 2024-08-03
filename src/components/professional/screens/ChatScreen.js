@@ -4,7 +4,7 @@ import tw from "twrnc"
 import {MaterialIcons} from "@expo/vector-icons"
 import MessageCard from '../../patient/cards/MessageCard'
 
-function ChatScreen({navigation, route}) {
+function DonorScreen({navigation, route}) {
     const {contact} = route.params
     const [newMessage, setNewMessage] = useState("")
     const [messages, setMessages] = useState([
@@ -84,4 +84,4 @@ function ChatScreen({navigation, route}) {
   )
 }
 
-export default ChatScreen
+export default DonorScreen
