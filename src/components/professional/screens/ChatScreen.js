@@ -27,7 +27,7 @@ function DonorScreen({navigation, route}) {
     const sendMessage = () => {}
   return (
     <>
-        <View style={tw`bg-[#0C3778] p-4 flex flex-row justify-between items-center`}>
+        <View style={tw`bg-[#54C2B5] p-4 flex flex-row justify-between items-center`}>
               <View style={tw`flex flex-row justify-between items-center w-[57%]`}>
                 <TouchableOpacity
                  onPress={() => navigation.goBack()}

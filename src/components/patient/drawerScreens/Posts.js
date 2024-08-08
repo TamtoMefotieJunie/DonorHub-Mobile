@@ -19,7 +19,7 @@ const Posts = () => {
   
   return (
     <ScrollView>
-      <View style={tw `bg-[#54C2B5]/5 w-full pl-5 pt-13 pr-5 h-900`}>
+      <View style={tw `bg-[#54C2B5]/5 w-full pl-5 pt-5 pr-5 h-900`}>
           <Text style={tw `text-2xl text-[#54C2B5] font-bold`}>Latest Updates</Text>
         
             <PostCard image={require("../../../../assets/images/bg main.jpeg")}

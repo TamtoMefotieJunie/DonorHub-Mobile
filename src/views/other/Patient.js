@@ -7,14 +7,18 @@ import Home from "../../components/patient/drawerScreens/Home"
 import Profile from "../../components/patient/drawerScreens/Profile"
 import { StatusBar } from 'expo-status-bar'
 import {MaterialIcons} from "@expo/vector-icons"
-import AppointmentNavigation from '../../components/patient/drawerScreens/navigation/AppointmentNavigation'
 import DonorNavigation from '../../components/patient/drawerScreens/navigation/DonorNavigation'
 import HospitalNavigation from '../../components/patient/drawerScreens/navigation/HospitalNavigation'
 import Posts from '../../components/patient/drawerScreens/Posts'
+import Notification from '../../components/patient/screens/Notification'
+import { TouchableOpacity } from "react-native-gesture-handler"
+import { createStackNavigator } from '@react-navigation/stack'
 
 
-function Patient() {
+
+function Patient({navigation}) {
     const Drawer = createDrawerNavigator()
+    const Stack = createStackNavigator()
   return (
     <>
     <NavigationContainer>
@@ -26,25 +30,29 @@ function Patient() {
             headerTitleStyle: tw `text-white`,
             headerStyle: tw`bg-[#54C2B5]`,
             headerRight: () => {
-                return (
-                    <>
+              return (
+                  <>
+                    <TouchableOpacity
+                      onPress = { () => navigation.navigate("Notification")}>
                         <MaterialIcons 
-                         style={tw`text-white right-8`}
+                        style={tw`text-white right-8`}
                         name="notifications" size={30} />
-                    </>
-                )
-            }
+                      </TouchableOpacity> 
+                  </>   
+              )
+          }
           }}
           
           initialRouteName='Home'
           drawerContent={(props) => <PatientDrawerContent {...props} />}
         >
-            <Drawer.Screen name='Home' component={Home} />
+            <Drawer.Screen name='Home' component={Home} />  
             <Drawer.Screen name='Hospitals' component={HospitalNavigation} />
             <Drawer.Screen name='Potential Donors' component={DonorNavigation} />
             <Drawer.Screen name='Posts' component={Posts} />
             <Drawer.Screen name='Profile' component={Profile} />
-            {/* <Drawer.Screen name='Posts' component={AppointmentNavigation} /> */}
+            <Stack.Screen name='Notification' component={Notification}/>
+            
         </Drawer.Navigator>
     </NavigationContainer>
     </>

@@ -3,7 +3,7 @@ import { TextInput, TouchableOpacity } from 'react-native'
 import { View } from 'react-native'
 import tw from "twrnc"
 
-function FormInput({icon, name, value, onBlur, onChange, type, placeholder}) {
+function FormInput({icon, name, value, onBlur, onChange, type, placeholder, editable}) {
   return (
     <>
         <View style={tw`p-4 bg-[#E8E4E4] mt-5 text-[#8B8989] rounded-4 w-full flex flex-row justify-between items-center`}>
@@ -18,6 +18,7 @@ function FormInput({icon, name, value, onBlur, onChange, type, placeholder}) {
            onChangeText={onChange}
            keyboardType={name}
            secureTextEntry={type == "password" ? true : false}
+           editable = {editable}
           />
         </View>
     </>

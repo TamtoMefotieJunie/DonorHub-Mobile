@@ -5,7 +5,7 @@ import tw from "twrnc"
 const PostCard = ({image,content,time}) => {
   return (
     
-        <View style={tw `bg-[#E5E5E5] w-full mt-5 rounded-12 ml-0 mr-15 h-110`}>
+        <View style={tw `bg-[#E5E5E5] shadow-xl w-full mt-5 rounded-12 ml-0 mr-15 h-110`}>
             <Image
                 source={image}
                 resizeMode='contain'

@@ -5,7 +5,7 @@ import SecondaryButton from '../../buttons/SecondaryButton'
 import BloodCard from '../cards/BloodCard'
 import { ScrollView } from 'react-native-gesture-handler'
 
-function DetailHospital() {
+function DetailHospital({navigation}) {
   return (
     <>
       <View style={tw`p-4`}>
@@ -19,12 +19,12 @@ function DetailHospital() {
           </View>
           <View style={tw`h-[100%]`}>
             <ScrollView showsVerticalScrollIndicator={false} >
-              <BloodCard type="Simple" component="RBC only"quantity={20} group="A+" />
-              <BloodCard type="Double" component="RBC/Plasma"quantity={20} group="AB+" />
-              <BloodCard type="Tripple" component="RBC/Platelets"quantity={20} group="B-" />
-              <BloodCard type="Simple" component="RBC"quantity={20} group="A+" />
-              <BloodCard type="Simple" component="RBC only"quantity={20} group="A+" />
-              <BloodCard type="Double" component="RBC/Plasma"quantity={20} group="AB+" />
+              <BloodCard type="Simple" component="RBC only"quantity={20} group="A+" navigation={navigation} />
+              <BloodCard type="Double" component="RBC/Plasma"quantity={20} group="AB+" navigation={navigation} />
+              <BloodCard type="Tripple" component="RBC/Platelets"quantity={20} group="B-" navigation={navigation}/>
+              <BloodCard type="Simple" component="RBC"quantity={20} group="A+"navigation={navigation} />
+              <BloodCard type="Simple" component="RBC only"quantity={20} group="A+" navigation={navigation} />
+              <BloodCard type="Double" component="RBC/Plasma"quantity={20} group="AB+" navigation={navigation}/>
               <BloodCard type="Tripple" component="RBC/Platelets"quantity={20} group="B-" />
               <BloodCard type="Tripple" component="RBC/Platelets"quantity={20} group="B-" />
               <BloodCard type="Tripple" component="RBC/Platelets"quantity={20} group="B-" />

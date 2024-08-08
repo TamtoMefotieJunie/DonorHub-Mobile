@@ -47,7 +47,7 @@ function Prescription() {
               />
               </View>
                 <TouchableOpacity
-                  style={tw`p-3 mt-5 bg-[#0C3778] rounded-5`}>
+                  style={tw`p-3 mt-5 bg-[#54C2B5] rounded-5`}>
                     <Text style={tw`text-white font-semibold text-center`}>Prescribe</Text>
                 </TouchableOpacity>
             </View>

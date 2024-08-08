@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Alert, ScrollView, Text, TextInput, View } from 'react-native'
 import { SelectList } from 'react-native-dropdown-select-list'
 import tw from "twrnc"
+import {MaterialIcons} from "@expo/vector-icons"
 import HospitalCard from '../cards/BankCard'
 
 function Hospital({navigation}) {
@@ -11,17 +12,28 @@ function Hospital({navigation}) {
   const handleViewMap = () => {
     navigation.navigate("Localisation")
   }
+  const [enteredHospital, setEnteredHospital] = useState("")
+const handleSearchHospital = () => {}
+const handleOpenSingleHospital = (donor) => {
+  navigation.navigate("DonorScreen", {donor})
+}
   return (
     <>
         <View style={tw`p-4 h-[100%]`}>
-          <Text style={tw`text-2xl font-bold text-[#54C2B5]`}>Filter By</Text>
-          <View style={tw`mt-3 flex flex-row justify-between items-center`}>
-              <TextInput 
-                placeholder='Location'
-                value={filterLocation}
-                onChangeText={(text) => {setFilterLocation(text); handleFilter()}}
-                style={tw`p-4 border border-gray-200 rounded-4 w-[50%] h-12 items-center text-center`}
-              />
+          
+          <View style={tw`mt-3 flex flex-row justify-between w-full items-center`}>
+              <View style={tw`flex w-[95%] rounded-3 border border-gray-300 p-2 flex-row justify-between items-center`}>
+                <MaterialIcons 
+                style={tw`text-gray-400`}
+                name='search' size={24} />
+                <TextInput 
+                value={enteredHospital}
+                onChangeText={(text) =>{setEnteredHospital(text); handleSearchHospital()}}
+                placeholder='Search'
+                style={tw`w-[85%]`}
+                />
+             </View>
+              
            </View>
             <Text style={tw`text-5 font-semibold border-b-2 p-4 border-gray-300`}>Available Hospitals</Text>
               <View style={tw`h-[78%]`}>

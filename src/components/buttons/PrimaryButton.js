@@ -8,7 +8,7 @@ function PrimaryButton({name, onPress}) {
       <View style={tw`mt-5`}>
         <TouchableOpacity
         onPress={onPress}
-         style={tw`p-4 w-full rounded-5 bg-[#54C2B5]`}
+         style={tw`p-4 w-full bg-[#54C2B5]  group-hover:scale-100 group-hover:bg-white/30 relative overflow-hidden rounded-2xl text-lg font-bold text-white`}
         >
             <Text style={tw`text-white text-5 text-center font-bold`}>{name}</Text>
         </TouchableOpacity>

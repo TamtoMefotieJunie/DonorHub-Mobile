@@ -7,68 +7,61 @@ import {MaterialIcons} from "@expo/vector-icons"
 function Donor({navigation}) {
   const [donor, setDonor] = useState([
     {
-         name:"Dr. Sandra Norvelle",
+         name:"Leonel Jugale",
          numberUnRead:5,
-         image: <MaterialIcons name="account-circle" size={70} />,
+         image: <MaterialIcons name="account-circle" size={60} color="#54C2B5"/>,
          lastMessage:"Hello Doctor",
          time: new Date().getHours()+":"+new Date().getMinutes()
   },
   {
-    name:"Dr. Dorelle Nadia",
+    name:"Richmond Ngwese",
     numberUnRead:3,
-    image: <MaterialIcons name="account-circle" size={70} />,
+    image: <MaterialIcons name="account-circle" size={60} color="#54C2B5"/>,
     lastMessage:"Hello Doctor N",
     time: new Date().getHours()+":"+new Date().getMinutes()
 },
 {
-  name:"Dr. Ida Stephanie",
+  name:"Franck cyrina",
   numberUnRead:2,
-  image: <MaterialIcons name="account-circle" size={70} />,
+  image: <MaterialIcons name="account-circle" size={60} color="#54C2B5"/>,
   lastMessage:"Hello Doctor",
   time: new Date().getHours()+":"+new Date().getMinutes()
 },
 {
-  name:"Dr. Dorelle Nadia",
+  name:"Seraphita Ange",
   numberUnRead:3,
-  image: <MaterialIcons name="account-circle" size={70} />,
+  image: <MaterialIcons name="account-circle" size={60} color="#54C2B5"/>,
   lastMessage:"Hello Doctor N",
   time: new Date().getHours()+":"+new Date().getMinutes()
 },
 {
-name:"Dr. Ida Stephanie",
+name:"Daniel Ndabose",
 numberUnRead:2,
-image: <MaterialIcons name="account-circle" size={70} />,
+image: <MaterialIcons name="account-circle" size={60} color="#54C2B5"/>,
 lastMessage:"Hello Doctor",
 time: new Date().getHours()+":"+new Date().getMinutes()
 },
 {
-  name:"Dr. Dorelle Nadia",
+  name:"Auriol Sopning",
   numberUnRead:3,
-  image: <MaterialIcons name="account-circle" size={70} />,
+  image: <MaterialIcons name="account-circle" size={60} color="#54C2B5"/>,
   lastMessage:"Hello Doctor N",
   time: new Date().getHours()+":"+new Date().getMinutes()
 },
 {
-name:"Dr. Ida Stephanie",
+name:"Samira Domche",
 numberUnRead:2,
-image: <MaterialIcons name="account-circle" size={70} />,
+image: <MaterialIcons name="account-circle" size={60} color="#54C2B5"/>,
 lastMessage:"Hello Doctor",
 time: new Date().getHours()+":"+new Date().getMinutes()
 },
 {
-  name:"Dr. Dorelle Nadia",
+  name:"Nono Rufus",
   numberUnRead:3,
-  image: <MaterialIcons name="account-circle" size={70} />,
+  image: <MaterialIcons name="account-circle" size={60} />,
   lastMessage:"Hello Doctor N",
   time: new Date().getHours()+":"+new Date().getMinutes()
-},
-{
-name:"Dr. Ida Stephanie",
-numberUnRead:2,
-image: <MaterialIcons name="account-circle" size={70} />,
-lastMessage:"Hello Doctor",
-time: new Date().getHours()+":"+new Date().getMinutes()
-},
+}
 
 ])
 const [enteredDonor, setEnteredDonor] = useState("")
@@ -78,22 +71,12 @@ const handleOpenSingleDonor = (donor) => {
 }
   return (
     <>
-      <View style={tw`p-4`}>
+      <View style={tw`p-3`}>
         <View style={tw`flex flex-row justify-between items-center`}>
-          <Text style={tw`text-8 text-[#0C3778] font-semibold text-center`}>CHAT</Text>
-          <View style={tw`flex w-[70%] rounded-3 border border-gray-300 p-2 flex-row justify-between items-center`}>
-            <MaterialIcons 
-             style={tw`text-gray-400`}
-            name='search' size={24} />
-            <TextInput 
-             value={enteredDonor}
-             onChangeText={(text) =>{setEnteredDonor(text); handleSearchDonor()}}
-             placeholder='Search donor or message'
-             style={tw`w-[85%]`}
-            />
-          </View>
+          <Text style={tw`text-6 text-[#54C2B5] font-semibold text-center`}>Donors Compatible with you</Text>
+          
         </View>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           {
             donor?.map((singleDonor, index) => {
               return (

@@ -13,16 +13,13 @@ function PaymentForm(){
     
     return(
         <>  
-          
-
-           
-            <View style={tw `p-8 rounded-lg w-full h-full`}>
+            <View style={tw `p-5 rounded-lg w-full h-full`}>
             <View style={tw `ml-5.5`}>
                 <Text style={tw `text-5xl pt-7 mb-5 text-[#CF3304] font-bold`}>DH</Text>
                 <Text style={tw`text-[#808080] text-left text-5 absolute left-[-4] top-19 pl-1 font-bold`}>DonorHub</Text>
              
              </View>
-            <Text style={tw `text-[30px] mb-7  pt-10 self-center text-[#54C2B5] font-bold`}>Payment</Text>
+            <Text style={tw `text-[30px] mb-7  pt-10 self-center text-[#54C2B5] font-bold`}>PAYMENT</Text>
          
                <PaymentInput 
                     Amount="25000"
@@ -36,7 +33,7 @@ function PaymentForm(){
                     // value={values.fullName}
                     // onChange={handleChange("fullName")}
                     // onBlur={handleBlur("fullName")}
-                    name="default"
+                    name="username"
                     icon={<MaterialIcons name="edit" size={24} style={tw`text-[#8B8989]`} />}
                     className="mb-15"
                 />
@@ -48,7 +45,7 @@ function PaymentForm(){
                     // value={values.telNumber}
                     // onChange={handleChange("telNumber")}
                     // onBlur={handleBlur("telNumber")}
-                    name="phone-pad"
+                    name="phone"
                     icon={<MaterialIcons name="phone" size={24} style={tw`text-[#8B8989]`} />}
                 />
                     {/* errors.telNumber && touched.telNumber && */}
@@ -56,13 +53,13 @@ function PaymentForm(){
 
                <PrimaryButton
                     // onPress={handleSubmit} 
-                    name="Pay"  
+                    name="PAY"  
                />
                 <View style={tw `flex-row pt-15 justify-center`}>
-                <Text style={tw `text-[#E5E5E5] mr-3`}>Powered by</Text>
+                <Text style={tw `text-[#000000] mr-3`}>Powered by</Text>
                 <Image source={require('../../../../assets/images/orange.png')} style={{height:40, width:40}}/>
                         
-                <Text style={tw `text-[#D9D9D9] mr-3`}>and</Text>
+                <Text style={tw `ml-3 mr-3`}></Text>
                 <Image source={require('../../../../assets/images/Mtn.png')} />
                 </View>
                 <View >

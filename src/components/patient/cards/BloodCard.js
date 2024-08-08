@@ -4,7 +4,7 @@ import tw from "twrnc"
 import SecondaryButton from '../../buttons/SecondaryButton'
 import {MaterialIcons} from "@expo/vector-icons"
 
-const BloodCard = ({onPress,type,component,quantity,group}) => {
+const BloodCard = ({type,component,quantity,group, navigation}) => {
   return (
    <View style={tw `bg-gray-100 rounded-lg border-b-4 border-gray-300 shadow-md mt-3 `}>
         <View style={tw ` flex flex-row justify-around items-center h-10`}>
@@ -13,7 +13,7 @@ const BloodCard = ({onPress,type,component,quantity,group}) => {
         <Text  style={tw `text-4 pl-2`}>{quantity}</Text>
         <Text  style={tw `text-4 pl-2 font-bold`}>{group}</Text>  
     </View>
-    <SecondaryButton name="Request"/>
+    <SecondaryButton name="Request" navigation={navigation} />
    </View>
     
   )

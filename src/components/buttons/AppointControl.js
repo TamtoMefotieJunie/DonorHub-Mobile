@@ -12,9 +12,9 @@ function AppointControl({name, status, onPress, isControl}) {
          onPress={onPress}
          style={
             status === "active" ?
-            tw`bg-[#0C3778] p-2 rounded-4 w-[31%]` 
+            tw`bg-[#54C2B5] p-2 rounded-4 w-[31%] transition-all group-hover:scale-100 group-hover:bg-white/30 group relative overflow-hidden rounded-2xl text-lg font-bold text-white` 
             :
-            tw`bg-gray-300 p-2 rounded-4 w-[31%]`
+            tw`bg-gray-300 p-2 rounded-4 w-[31%] transition-all group-hover:scale-100 group-hover:bg-white/30 group relative overflow-hidden rounded-2xl text-lg font-bold text-white`
          }
         >
             <Text style={
@@ -27,9 +27,9 @@ function AppointControl({name, status, onPress, isControl}) {
         onPress={onPress}
         style={
            status === "active" ?
-           tw`bg-[#0C3778] p-2 rounded-4 w-[45%]` 
+           tw`bg-[#54C2B5] p-2 rounded-4 w-[35%] transition-all group-hover:scale-100 group-hover:bg-white/30 group relative overflow-hidden rounded-2xl text-lg font-bold text-white` 
            :
-           tw`bg-gray-300 p-2 rounded-4 w-[45%]`
+           tw`bg-gray-300 p-2 rounded-4 w-[35%] transition-all group-hover:scale-100 group-hover:bg-white/30 group relative overflow-hidden rounded-2xl text-lg font-bold text-white`
         }
        >
            <Text style={
