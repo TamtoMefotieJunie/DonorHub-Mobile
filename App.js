@@ -19,9 +19,9 @@ export default function App() {
   return (
     <>
 
-      <Technician/>
+      {/* <Technician/> */}
       {/* <SuccessCard/> */}
-      {/* <Patient/> */}
+      <Patient/>
       {/* <LoginScreen/> */}
       {/* <Hospital/> */}
       {/* <BankCard/> */}

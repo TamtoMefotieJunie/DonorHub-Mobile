@@ -1,13 +1,38 @@
 import { Formik } from 'formik'
-import React from 'react'
-import { Image, Text, View, TouchableOpacity, ScrollView } from 'react-native'
+import React, { useState, useRef } from 'react'
+import { Image, Text, View, TouchableOpacity, ScrollView, Animated,Dimensions } from 'react-native'
 import tw from "twrnc"
 import FormInput from '../../components/inputs/FormInput'
 import {MaterialIcons} from "@expo/vector-icons"
 import { validationSchema } from '../../utils/validation/registerValidation'
 import PrimaryButton from '../../components/buttons/PrimaryButton'
 
-function RegisterScreen() {
+function RegisterScreen({currentScreen, targetScreen, navigation }) {
+   
+        const [animation] = React.useState(new Animated.Value(0));
+      
+        const handlePress = () => {
+          Animated.timing(animation, {
+            toValue: 1,
+            duration: 300,
+            useNativeDriver: true,
+          }).start(() => {
+            // Navigate to the target screen
+            navigation.navigate('LoginScreen');
+          });
+        };
+      
+        const slideAnimation = {
+          transform: [
+            {
+              translateX: animation.interpolate({
+                inputRange: [0, 1],
+                outputRange: [0, -Dimensions.get('window').width],
+              }),
+            },
+          ],
+        };
+
     const initialValues = {
         fullName: "",
         emailAddress: "",
@@ -18,8 +43,9 @@ function RegisterScreen() {
     const onSubmit = (values) => {}
   return (
     <>
+         <Animated.View style={[tw`absolute top-0 left-0 right-0 bottom-0`, slideAnimation]}>
         <ScrollView>
-            <View style={tw`p-8`}>
+            <View style={tw`pt-0 pl-5 pr-5`}>
                 <Image 
                  source={require("../../../assets/images/im6.jpg")}
                  resizeMode="cover"
@@ -129,14 +155,19 @@ function RegisterScreen() {
                         </>
                     )}
                  </Formik>
+                
                  <View  style={tw`flex flex-row font-semibold justify-between items-center w-[50%] mt-5`}>
                <Text style={tw`text-5 w-45 font-semibold`}> Have an account ? </Text>
-                 <TouchableOpacity>
-                    <Text style={tw`text-[#CF3304] font-semibold text-5`}>Log In</Text>
-                    </TouchableOpacity>
+               <TouchableOpacity
+                    style={tw``}
+                    onPress={handlePress}
+                >
+                    <Text style={tw`text-[#CF3304] font-semibold text-5`}>Login </Text>
+                </TouchableOpacity>
                 </View>
             </View>
         </ScrollView>
+        </Animated.View>
     </>
   )
 }

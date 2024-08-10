@@ -2,32 +2,27 @@ import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import {MaterialIcons} from "@expo/vector-icons"
 import tw from "twrnc"
+import SecondaryButton from '../../buttons/SecondaryButton'
+import TertiaryButton from '../../buttons/TertiaryButton'
 
-function ContactCard({image, name, lastMessage, numberUnRead, time, onPress}) {
+function ContactCard({image, name,  onPress}) {
   return (
     <>
-       <View  style={tw`flex flex-row justify-between bg-gray-100 rounded-lg border-b-4 border-gray-300 p-2 items-center mt-2`}>
-            <View style={tw ` rounded-full`}>
+    <TouchableOpacity onPress={onPress}>
+       <View  style={tw`flex bg-white/70 flex-row justify-around border-b-8 border-gray-300 p-2 items-center mt-2`}>
+            <View style={tw ` bg-red-200 border-white border-2 rounded-full`}>
             { image}
             </View>
-            <View style={tw`flex w-[85%] flex-row justify-between items-center`}>
-                <View style={tw`flex flex-row w-[60%] ml-4 justify-between items-center`}>
-                    <Text style={tw`text-lg font-semibold`}>{name}</Text>
+              <View style={tw`flex flex-row w-[50%] ml-4 justify-between items-center`}>
+                <Text style={tw`text-lg font-semibold`}>{name}</Text>
                    
-                </View>
-                <View style={tw`flex flex-row w-[28%] justify-around items-center`}>
-                <TouchableOpacity
-                    onPress={onPress}
-                   >
-                    <MaterialIcons name="mark-chat-unread" size={24} color="#CF3304" />
-                </TouchableOpacity>
-                    <TouchableOpacity>
-                     <MaterialIcons name="mark-email-unread" size={24} color="#CF3304" />
-                    </TouchableOpacity>
-                </View>
-            </View>
-            <Text></Text>
-            </View>
+              </View>
+                
+            
+            <MaterialIcons name="more-horiz" size={30} color="gray" />
+        </View>
+        </TouchableOpacity>
+
     </>
   )
 }
