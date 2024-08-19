@@ -4,7 +4,7 @@ import tw from "twrnc"
 import {MaterialIcons} from "@expo/vector-icons"
 import HospitalCard from '../cards/HospitalCard'
 
-function Hospital({navigation, route}) {
+function HospitalScreen({navigation, route}) {
     const {name, location} = route.params
     const [doctors, setDoctors] = useState([
         {
@@ -59,4 +59,4 @@ function Hospital({navigation, route}) {
   )
 }
 
-export default Hospital
+export default HospitalScreen

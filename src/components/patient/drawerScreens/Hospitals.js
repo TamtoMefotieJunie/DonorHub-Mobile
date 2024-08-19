@@ -7,7 +7,7 @@ import HospitalCard from '../cards/BankCard'
 
 function Hospital({navigation}) {
   const [filterLocation, setFilterLocation] = useState("")
-  const [filterStoreType, setFilterStoreType] = useState("")
+
   const handleFilter = () => {}
   const handleViewMap = () => {
     navigation.navigate("Localisation")

@@ -6,9 +6,19 @@ import AppointControl from '../../buttons/AppointControl'
 import {MaterialCommunityIcons,MaterialIcons,} from "react-native-vector-icons";
 import FormInput from '../../inputs/FormInput';
 import PrimaryButton from "../../buttons/PrimaryButton";
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 
 function PatientRequest({patientImage,time, patientName, title, date,group}) {
+    const [newdate, setDate] = useState(new Date());
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [newtime, setTime] = useState(''); 
+
+  const onDateChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShowDatePicker(false);
+    setDate(currentDate);
+  };
     const [ModalOpen,setModalOpen] = useState(false);
   return (
     <>
@@ -31,21 +41,33 @@ function PatientRequest({patientImage,time, patientName, title, date,group}) {
             <MaterialCommunityIcons name="close-circle" size={30} color="gray" style={tw`text-right mb-5`} />
             </TouchableOpacity>
             <Text style={tw`text-[#54C2B5] text-2xl text-center font-bold`}>RESCHEDULE</Text>
-            <FormInput placeholder="Date"
-            type="text"
-            // onChange={handleChange("telNumber")}
-            // onBlur={handleBlur("telNumber")}
-            name="image"
-            icon={<MaterialCommunityIcons name="calendar" size={24} color="black" style={tw`text-[#8B8989]`} />}  
+            <TouchableOpacity onPress={() => setShowDatePicker(!showDatePicker)} style={tw`flex-row items-center`}>
+            <FormInput
+              placeholder={newdate.toLocaleDateString()}
+              type="text"
+              editable={false} 
+              name="date"
+              icon={<MaterialCommunityIcons name="calendar" size={24} color="black" style={tw`text-[#8B8989]`} />}
             />
-            <FormInput placeholder="Time"
+          </TouchableOpacity>
+
+          {showDatePicker && (
+            <DateTimePicker
+              value={newdate}
+              mode="date"
+              display="default"
+              onChange={onDateChange}
+            />
+          )}
+          <FormInput
+            placeholder="Time"
             type="text"
             name="time"
-            icon={
-                <MaterialCommunityIcons name="clock" size={24} color="gray" />}
-            />
+            onChangeText={setTime}
+            icon={<MaterialCommunityIcons name="clock" size={24} color="gray" />}
+          />
 
-            <PrimaryButton name="SAVE"/>
+          <PrimaryButton name="SAVE" />
             </View>
       </View>
     </Modal>

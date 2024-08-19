@@ -85,7 +85,7 @@ const handleOpenModal = (donor) => {
 
 
   return (
-    
+    <>
     <View style={tw``}>
       
     <View style={tw`flex flex-row justify-between items-center`}>
@@ -179,6 +179,7 @@ const handleOpenModal = (donor) => {
         </View>
       </Modal>
     </View>
+    </>
   );
 }
 

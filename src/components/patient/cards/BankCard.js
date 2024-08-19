@@ -41,7 +41,7 @@ function HospitalCard({name, location, onPress,navigation}) {
                   <MaterialIcons
                     name="location-on"
                     size={35}
-                    color="#54C2B5" 
+                    color="#CF3304" 
                   /> 
               </View>
               

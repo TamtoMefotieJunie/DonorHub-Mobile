@@ -114,11 +114,11 @@ function RegisterScreen({currentScreen, targetScreen, navigation }) {
                             }
                             <FormInput 
                                 placeholder="Blood Group"
-                                type="tel"
-                                value={values.telNumber}
-                                onChange={handleChange("telNumber")}
-                                onBlur={handleBlur("telNumber")}
-                                name="phone-pad"
+                                type="text"
+                                value={values.bloodGroup}
+                                onChange={handleChange("bloodGroup")}
+                                onBlur={handleBlur("bloodGroup")}
+                                name="blood-group"
                                 icon={<MaterialIcons name="bloodtype" size={24} style={tw`text-[#8B8989]`} />}
                             />
                             {

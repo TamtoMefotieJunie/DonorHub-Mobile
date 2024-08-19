@@ -1,12 +1,11 @@
 import React from 'react'
 
-
 import Notification from '../../screens/Notification'
 import Hospital from '../Hospitals';
 import { createStackNavigator } from '@react-navigation/stack'
 
-
 import DetailHospital from "../../screens/DetailHospital"
+
 import Localisation from '../../screens/Localisation'
 import PaymentForm from '../../screens/PaymentForm';
 
