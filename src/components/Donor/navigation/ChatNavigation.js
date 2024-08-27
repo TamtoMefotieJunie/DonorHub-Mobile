@@ -1,7 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
-import Chat from '../DrawerScreens/Chat'
 import ChatScreen from '../Screens/ChatScreen'
+import ChatDonor from '../DrawerScreens/Chat'
 
 function ChatNavigation() {
     const Stack = createStackNavigator()
@@ -10,10 +10,10 @@ function ChatNavigation() {
         <Stack.Navigator>
             <Stack.Screen options={{
                 headerShown: false
-            }} name='Chat' component={Chat} />
+            }} name='Chat' component={ChatDonor} />
             <Stack.Screen options={{
                 headerShown: false
-            }} name='Chat Screen' component={ChatScreen} />
+            }} name='ChatScreen' component={ChatScreen} />
         </Stack.Navigator>
     </>
   )

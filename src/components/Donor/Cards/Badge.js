@@ -33,11 +33,11 @@ const Badge = ({ navigation }) => {
                         <Image
                         source={require('../../../../assets/images/donorbadge.jpg')}
                         resizeMode='inherit'
-                        style={tw `h-25 w-25 rounded-full`}/>
+                        style={tw `h-22 w-22 rounded-full`}/>
                 
                         <Text style={tw `text-xl text-[#54C2B5]`} bold>Donor's Card</Text>
                     </View>
-                    <Text style={tw ` text-4 my-2 text-justify`}>Mr/Mrs <Text bold >Tamto Junie </Text> receives this card to be used in any decentralized center of <Text bold>CHU</Text> for his/her active participation 
+                    <Text style={tw ` text-4 my-4 text-justify`}>Mr/Mrs <Text bold >Tamto Junie </Text> receives this card to be used in any decentralized center of <Text bold>CHU</Text> for his/her active participation 
                         in saving lives
                     </Text>
                     <Text style={tw `self-end text-4`} bold>The head of Department</Text>

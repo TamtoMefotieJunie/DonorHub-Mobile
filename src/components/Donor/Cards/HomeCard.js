@@ -16,10 +16,10 @@ const HomeCard = ({number,style,icon,style2,info,arrow,navigation}) => {
             </View>
                 <View style={tw`items-center justify-between flex flex-row`}>
                     <Text style={tw`text-10 text-gray-500 font-bold`}>{number}</Text>
-                    <View style={tw`items-center justify-around flex flex-row`}>
-                        <Text style={tw`text-gray-500 text-5 font-semibold`}>{info}</Text>
-                        <TouchableOpacity onPress={() => navigation.navigate("badge")}>
-                            {arrow}
+                    <View >
+                         <TouchableOpacity style={tw`items-center justify-around flex flex-row`} onPress={() => navigation.navigate("badge")}>
+                            <Text style={tw`text-gray-500 text-5 font-semibold`}>{info}</Text>
+                               {arrow}
                         </TouchableOpacity>
                     </View>
                 </View>

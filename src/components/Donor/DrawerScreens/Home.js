@@ -19,10 +19,10 @@ const Home = ({navigation}) => {
         icon={<MaterialIcons name="volunteer-activism" size={45} color="#C52A2F"/>}
         info="Number of Donations"
         />
-        <HomeCard number={1} style="bg-white" style2="bg-[#54C2B5]" 
+        <HomeCard number="01" style="bg-white" style2="bg-[#54C2B5]" 
         icon={<SimpleLineIcons  name="badge" size={45} color="#54C2B5"/>}
         info="Get your badge here"
-        arrow={<MaterialIcons name="navigate-next" size={34} color="gray"  />}
+        arrow={<MaterialIcons name="navigate-next" size={40} color="#000000"  />}
         navigation={navigation}
         />
     </View>
