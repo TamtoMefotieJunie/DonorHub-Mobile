@@ -18,7 +18,7 @@ function RegisterScreen({currentScreen, targetScreen, navigation }) {
             useNativeDriver: true,
           }).start(() => {
             // Navigate to the target screen
-            navigation.navigate('LoginScreen');
+            navigation.navigate('Login');
           });
         };
       
@@ -157,7 +157,7 @@ function RegisterScreen({currentScreen, targetScreen, navigation }) {
                  </Formik>
                 
                  <View  style={tw`flex flex-row font-semibold justify-between items-center w-[50%] mt-5`}>
-               <Text style={tw`text-5 w-45 font-semibold`}> Have an account ? </Text>
+               <Text style={tw`text-5 w-63 text-[#808080] font-semibold`}> Have an account ? </Text>
                <TouchableOpacity
                     style={tw``}
                     onPress={handlePress}

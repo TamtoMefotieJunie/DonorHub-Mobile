@@ -4,7 +4,6 @@ import React from 'react'
 import HealthProfessional from "./HealthProfessional"
 import { Text, View } from 'react-native'
 import tw from "twrnc"
-import Prescription from '../../components/professional/screens/PostForm'
 import Settings from "../../components/professional/screens/Posts"
 import Profile from "../../components/professional/screens/Profile"
 import Notification from '../../components/professional/screens/Notification'

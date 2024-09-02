@@ -18,8 +18,10 @@ import AppointmentForm from './src/components/Donor/Screens/Appointment';
 import DonorNotification from './src/components/Donor/Screens/DonorNotification';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import tw from 'twrnc'; // or your Tailwind setup
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { useEffect,useState } from 'react';
+import LandingScreen from './src/views/auth/LandingScreen';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -30,7 +32,7 @@ const loadFonts = async () => {
   });
 };
 
-export default function App() {
+export default function App({navigation}) {
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
   useEffect(() => {
@@ -51,22 +53,26 @@ export default function App() {
   if (!fontsLoaded) {
     return null; // or a loading spinner, etc.
   }
-
+  const Stack = createNativeStackNavigator();
+  const screenOptions = {headerShown: false}
   return (
     <>
-      <Donor />
-      {/* <DonorNotification/> */}
-      {/* <AppointmentForm/> */}
-      {/* <Technician/> */}
-      {/* <SuccessCard/> */}
-      {/* <Patient/> */}
-      {/* <LoginScreen/> */}
-      {/* <Hospital/> */}
-      {/* <BankCard/> */}
-      {/* <RegisterScreen/> */}
-      {/* <PaymentForm/> */}
-      {/* <PostCard/> */}
-      {/* <Posts/> */}
+     <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Land"
+          component={LandingScreen}
+          options={screenOptions}
+          navigation={navigation}
+        />
+        <Stack.Screen name="Login" component={LoginScreen} options={screenOptions} />
+        <Stack.Screen name="register" component={RegisterScreen} options={screenOptions} />
+        <Stack.Screen name="patient" component={Patient} options={screenOptions} />
+        <Stack.Screen name="donor" component={Donor} options={screenOptions} />
+        <Stack.Screen name="technician" component={Technician} options={screenOptions} />
+        <Stack.Screen name="post" component={Posts} options={screenOptions} />
+      </Stack.Navigator>
+    </NavigationContainer>
     </>
   );
 }

@@ -1,7 +1,6 @@
 import React from 'react'
 import { ScrollView, TouchableOpacity, View } from 'react-native'
 import tw from "twrnc"
-import loginImage from  "../../../assets/images/login.png"
 import { Image } from 'react-native'
 import { Text } from 'react-native'
 import FormInput from '../../components/inputs/FormInput'
@@ -10,7 +9,7 @@ import PrimaryButton from '../../components/buttons/PrimaryButton'
 import { Formik, useFormik } from 'formik'
 import * as Yup from "yup"
 
-function LoginScreen() {
+function LoginScreen({navigation}) {
     const validationSchema = Yup.object().shape({
         emailMatricle: Yup.string()
                         .required("*"),
@@ -27,7 +26,7 @@ function LoginScreen() {
     <>
       <ScrollView>
          <View style={tw`p-8 flex flex-col justify-between h-full w-full`}>
-            <View style={tw`bg w-100 flex flex-row`}>
+            <View style={tw` w-100 flex flex-row`}>
               <Image 
               source={require("../../../assets/images/logo4.png")}
               resizeMode="contain"
@@ -38,7 +37,7 @@ function LoginScreen() {
                 <Text style={tw`text-[#808080] text-left text-5 absolute left-[-13] top-33 pl-1 font-bold`}>DonorHub</Text>
               </View>
             </View>
-            <Text style={tw`text-[#54C2B5] text-center text-10 font-bold`}>Sign In</Text>
+            <Text style={tw`text-[#54C2B5] text-center text-4xl font-bold`}>Sign In</Text>
              <Formik
               onSubmit={(values) => onSubmit(values)}
               validationSchema={validationSchema}
@@ -89,9 +88,9 @@ function LoginScreen() {
                     )}
             </Formik>
                <View  style={tw`flex flex-row font-semibold justify-between items-center w-[50%] mt-5`}>
-               <Text style={tw`text-5 w-53 text-[#808080] font-semibold`}>New to DonorHub ? </Text>
-                 <TouchableOpacity>
-                    <Text style={tw`text-[#54C2B5] font-semibold text-5`}>Register</Text>
+               <Text style={tw`text-lg w-53 text-[#808080] font-semibold`}>New to DonorHub ? </Text>
+                 <TouchableOpacity onPress={() => navigation.navigate("register")}>
+                    <Text style={tw`text-[#54C2B5] font-semibold text-lg`}>Register</Text>
                     </TouchableOpacity>
                 </View>
              </View>
