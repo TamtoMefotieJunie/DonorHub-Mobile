@@ -1,12 +1,12 @@
 import React from 'react'
 import { Text } from 'react-native'
 
-function DetailDoctor() {
+function DetailDonor() {
   return (
     <>
-      <Text>Detail Doctor</Text>
+      <Text>Detail Donor</Text>
     </>
   )
 }
 
-export default DetailDoctor
+export default DetailDonor

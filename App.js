@@ -10,7 +10,7 @@ import BankCard from './src/components/patient/cards/BankCard';
 import PaymentForm from './src/components/patient/screens/PaymentForm';
 import Posts from './src/components/patient/drawerScreens/Posts';
 import Hospital from './src/components/patient/drawerScreens/Hospitals';
-import DetailDoctor from './src/components/patient/screens/DetailDoctor'
+import DetailDoctor from './src/components/patient/screens/DetailDonor'
 import DetailHospital from './src/components/patient/screens/DetailHospital';
 import SuccessCard from './src/components/professional/cards/SuccessCard';
 import Donor from './src/views/other/Donor';
@@ -57,6 +57,7 @@ export default function App({navigation}) {
   const screenOptions = {headerShown: false}
   return (
     <>
+   
      <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
