@@ -8,16 +8,16 @@ import { useNavigation } from '@react-navigation/native';
 import { ImageBackground } from 'react-native'
 
 const LandingScreen = () => {
-    const [choice, setChoice] = useState(null);
+    const [choice, setChoice] = useState({ id: '', role: '' });
     const navigation = useNavigation();
     const handleContinue = () => {
-        navigation.navigate('Login', { choice });
-        console.log('Handling login/registration for', choice);
+        navigation.navigate('Login', { id: choice.id });
+        console.log('Handling login/registration for', choice.role);
       };
   return (
    <>
-   <View style={tw `w-full p-3 h-full bg-[#e5e5e5]/30`}>
-        <View style={tw`h-[35%] w-full p-5  bg-[#54C2B5] flex flex-col items-between gap-10 mt-10 shadow-lg rounded-10`}>
+   <View style={tw `w-full pl-3 pr-3 h-full bg-[#e5e5e5]/30`}>
+        <View style={tw`h-[35%] w-full p-5 bg-[#54C2B5] flex flex-col gap-10 mt-9 shadow-lg rounded-10`}>
             <View style={tw `h-[50%]`} >
                 <Image source={require("../../../assets/images/logo3.png")} 
               
@@ -40,8 +40,11 @@ const LandingScreen = () => {
                     resizeMode='full'
                     />
                 </View>
-                <TouchableOpacity style={tw`self-start bg-[#CF3304] rounded-xl w-[65%] pt-1.5 mt-3 h-8`} onPress={() => setChoice('donor')} >
-                    <Text style={tw `text-sm text-white text-center`} bold>CONTINUE</Text>
+                <TouchableOpacity
+                    style={tw`self-start bg-[#CF3304] rounded-xl w-[65%] pt-1.5 mt-3 h-8`}
+                    onPress={() => setChoice({ id: '66d1b01a13201b49b440af16', role: 'donor' })}
+                >
+                    <Text style={tw`text-sm text-white text-center`} bold>CONTINUE</Text>
                 </TouchableOpacity>
             </View>
             <View style={tw `h-[95%] flex flex-col w-[47%]` } >
@@ -52,7 +55,7 @@ const LandingScreen = () => {
                         resizeMode='full'
                     />
                </View>
-                <TouchableOpacity style={tw`self-end bg-[#CF3304]  rounded-xl w-[65%] pt-1.5 mt-3 h-8`} onPress={() => setChoice('patient')} >
+                <TouchableOpacity style={tw`self-end bg-[#CF3304]  rounded-xl w-[65%] pt-1.5 mt-3 h-8`} onPress={() => setChoice({id:'66d06c1db4cde514a0b8d1e2',role:'Patient'})} >
                     <Text style={tw `text-sm  text-white text-center`} bold>CONTINUE</Text>
                 </TouchableOpacity>
             </View>
@@ -67,18 +70,18 @@ const LandingScreen = () => {
                         resizeMode='full'
                         />
                     </View>
-                    <TouchableOpacity style={tw`self-center bg-[#CF3304] rounded-xl w-[65%] pt-1.5 mt-3 h-8`} onPress={() => setChoice('lab tech')} >
+                    <TouchableOpacity style={tw`self-center bg-[#CF3304] rounded-xl w-[65%] pt-1.5 mt-3 h-8`} onPress={() => setChoice({id:'66d1b05e13201b49b440af1a',role:'lab tech'})} >
                         <Text style={tw `text-sm text-white text-center`} bold>CONTINUE</Text>
                     </TouchableOpacity>
             </View>
         </View>
-        {choice && (
+        {choice.role && (
                 <TouchableOpacity
-                style={tw`absolute bottom-[-50] self-center right-7 bg-[#CF3304] rounded-xl w-[80%] pt-1.5 h-8`}
+                style={tw`absolute bottom-[-51] self-center right-7 bg-[#CF3304] rounded-xl w-[80%] pt-1.5 h-8`}
                 onPress={handleContinue}
                 >
                 <Text style={tw`text-sm text-white text-center`} bold>
-                    Continue as {choice}
+                    Continue as {choice.role}
                 </Text>
                 </TouchableOpacity>
             )}

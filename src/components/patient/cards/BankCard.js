@@ -6,7 +6,7 @@ import SecondaryButton from '../../buttons/SecondaryButton'
 import {MaterialIcons} from "@expo/vector-icons"
 
 
-function HospitalCard({name, location, onPress,navigation,price}) {
+function HospitalCard({name, location, onPress,onPress1,navigation,price}) {
   return (
     <>
         <View style={[tw` rounded-lg flex flex-column h-35 mt-2 pl-2 pr-2 `,
@@ -21,7 +21,7 @@ function HospitalCard({name, location, onPress,navigation,price}) {
           elevation: 6,
         },
         ]}>
-        <TouchableOpacity style={tw`flex flex-row rounded h-[37%]  pl-4 pr-4 bg-[#54C2B5] items-end justify-between`} onPress={() => navigation.navigate('Detailed Hospital')}>
+        <TouchableOpacity style={tw`flex flex-row rounded h-[37%]  pl-4 pr-4 bg-[#54C2B5] items-end justify-between`} onPress={onPress1} navigation={navigation}>
           <Text style={tw`text-xl font-bold text-center mb-2 text-[#ffffff]`}>{name}</Text>
           
             <MaterialIcons

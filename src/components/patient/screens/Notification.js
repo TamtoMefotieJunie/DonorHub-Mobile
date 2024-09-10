@@ -4,7 +4,7 @@ import { View ,Text,Image} from 'react-native'
 const Notification = () => {
   return (
     <>
-    <View>Notification</View>
+    <Text>Notification</Text>
     </>
   )
 }

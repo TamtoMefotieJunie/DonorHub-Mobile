@@ -8,10 +8,19 @@ import { MaterialIcons, Entypo } from '@expo/vector-icons'
 import PrimaryButton from '../../components/buttons/PrimaryButton'
 import { Formik, useFormik } from 'formik'
 import * as Yup from "yup"
+import { useRoute } from '@react-navigation/native';
 
 function LoginScreen({navigation}) {
+  const route = useRoute();
+  if (!route.params) {
+    console.error('No parameters provided to the route');
+    return;
+}
+const { id } = route.params; 
+console.log('Current route:', route);
+console.log('Route parameters:', route.params);
     const validationSchema = Yup.object().shape({
-        emailMatricle: Yup.string()
+        email: Yup.string()
                         .required("*"),
         password: Yup.string()
                   .required("*")
@@ -20,7 +29,45 @@ function LoginScreen({navigation}) {
     emailMatricle: "", password: ""
   }
 
-  const onSubmit = (values) => {}
+  const API_URL = "http://192.168.208.157:8080";
+  const onSubmit = (values) => {
+    console.log("string");
+    let body = JSON.stringify(values);
+    console.log("Sending request to:", `${API_URL}/user/login`, "with body:", body);
+    const submittedValues = {
+      ...values,
+      role: id
+  };
+    fetch(`${API_URL}/user/login`, {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify(submittedValues)
+  })
+  .then(async (response) => {
+      if (response.ok) {
+          console.log("User logged in successfully");
+          const data = await response.json(); 
+          const roleName = data.user.role.name;
+          if(roleName === 'Donor'){
+          navigation.navigate('donor',id); 
+          }else if(roleName === 'Patient'){
+            navigation.navigate('patient',id); 
+          }else{
+            navigation.navigate('technician',id); 
+          }
+
+            
+      } else {
+          const errorMessage = await response.text();
+          console.log("login failed:", errorMessage);
+      }
+  })
+  .catch((error) => {
+      console.log("Error:", error);
+  });
+  }
 
   return (
     <>
@@ -58,13 +105,13 @@ function LoginScreen({navigation}) {
               <FormInput 
                icon={<MaterialIcons name='email' size={24} style={tw`text-[#8B8989]`} />}
                name="default"
-               value={values.emailMatricle}
-               onBlur={handleBlur("emailMatricle")}
-               onChange={handleChange("emailMatricle")}
+               value={values.email}
+               onBlur={handleBlur("email")}
+               onChange={handleChange("email")}
                placeholder="Email"
               />
               {
-                errors.emailMatricle && touched.emailMatricle && <Text style={tw`text-red-600 mb-3`}>{errors.emailMatricle}</Text>
+                errors.email && touched.email && <Text style={tw`text-red-600 mb-3`}>{errors.email}</Text>
               }
               <FormInput 
                icon={<MaterialIcons name='lock' size={24} style={tw`text-[#8B8989]`} />}
@@ -89,7 +136,7 @@ function LoginScreen({navigation}) {
             </Formik>
                <View  style={tw`flex flex-row font-semibold justify-between items-center w-[50%] mt-5`}>
                <Text style={tw`text-lg w-53 text-[#808080] font-semibold`}>New to DonorHub ? </Text>
-                 <TouchableOpacity onPress={() => navigation.navigate("register")}>
+                 <TouchableOpacity onPress={() => navigation.navigate("register",{ id })}>
                     <Text style={tw`text-[#54C2B5] font-semibold text-lg`}>Register</Text>
                     </TouchableOpacity>
                 </View>

@@ -2,10 +2,14 @@ import * as Yup from "yup";
 import { validateCamtel, validateMTN, validateOrange } from "./validatePhone";
 
 export const validationSchema =  Yup.object().shape({
-    fullName:  Yup.string()
+    name:  Yup.string()
                 .required("*")
                 .matches(/^[A-Za-z\s]+$/i, "Only letters and whitespaces are allowed"),
-    emailAddress: Yup.string()
+    quantity: Yup.number()
+                .required("*")
+                .positive("Quantity must be a positive number")
+                .integer("Quantity must be an integer"),
+    email: Yup.string()
                     .email("Enter a valid email address")
                     .required("*"),
     password:      Yup.string()
@@ -15,7 +19,7 @@ export const validationSchema =  Yup.object().shape({
     confirmPassword:  Yup.string()
                       .required("*")
                       .oneOf([Yup.ref("password"), null], "Passwords must match !"),
-    telNumber: Yup.string()
+    telephone: Yup.string()
                 .required("*")
                 .min(9, "Enter a Cameroonian Phone Number")
                 .max(9, "Enter a Cameroonian Phone Number")

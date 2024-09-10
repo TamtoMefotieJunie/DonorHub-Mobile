@@ -13,7 +13,7 @@ function ProfessionalStack({navigation}) {
     const Stack = createStackNavigator()
   return (
     <>
-        <NavigationContainer>
+       
             <Stack.Navigator
             initialRouteName='Main Dashboard'
             >
@@ -47,7 +47,7 @@ function ProfessionalStack({navigation}) {
                 name='Settings' component={Settings}/>
 
             </Stack.Navigator>
-        </NavigationContainer>
+       
     </>
   )
 }

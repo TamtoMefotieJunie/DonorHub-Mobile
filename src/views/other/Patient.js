@@ -25,7 +25,7 @@ function Patient({navigation}) {
     const Stack = createNativeStackNavigator();
   return (
     <>
-    <NavigationContainer>
+    
         <StatusBar style="light" />
         <Drawer.Navigator
           screenOptions={{
@@ -68,7 +68,7 @@ function Patient({navigation}) {
           <Stack.Screen name='Notification' component={Notification} />
           <Stack.Screen name='LoginScreen' component={LoginScreen} />
         </Stack.Navigator> */}
-    </NavigationContainer>
+  
     </>
   )
 }

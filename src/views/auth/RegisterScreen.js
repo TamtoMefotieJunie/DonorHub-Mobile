@@ -5,10 +5,12 @@ import tw from "twrnc"
 import FormInput from '../../components/inputs/FormInput'
 import {MaterialIcons} from "@expo/vector-icons"
 import { validationSchema } from '../../utils/validation/registerValidation'
-import PrimaryButton from '../../components/buttons/PrimaryButton'
+import PrimaryButton from '../../components/buttons/PrimaryButton';
+import { useRoute } from '@react-navigation/native';
 
 function RegisterScreen({currentScreen, targetScreen, navigation }) {
-   
+        const route = useRoute();
+        const { id } = route.params;
         const [animation] = React.useState(new Animated.Value(0));
       
         const handlePress = () => {
@@ -34,13 +36,43 @@ function RegisterScreen({currentScreen, targetScreen, navigation }) {
         };
 
     const initialValues = {
-        fullName: "",
-        emailAddress: "",
+        name: "",
+        email: "",
         password: "",
         confirmPassword: "",
-        telNumber: ""
+        bloodGroup:"",
+        telephone: ""
     }
-    const onSubmit = (values) => {}
+    const API_URL = "http://192.168.130.157:8080";
+    const onSubmit = (values) => {
+      console.log("string");
+      let body = JSON.stringify(values);
+      console.log("Sending request to:", `${API_URL}/user/register`, "with body:", body);
+      const submittedValues = {
+        ...values,
+        role: id
+    };
+      fetch(`${API_URL}/auth/register`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json; charset=UTF-8",
+        },
+        body: JSON.stringify(submittedValues)
+    })
+    .then(async (response) => {
+        if (response.ok) {
+            console.log("User registered successfully");
+            await response.json(); 
+            navigation.navigate('Login',id);        
+        } else {
+            const errorMessage = await response.text();
+            console.log("Registration failed:", errorMessage);
+        }
+    })
+    .catch((error) => {
+        console.log("Error:", error);
+    });
+    }
   return (
     <>
          <Animated.View style={[tw`absolute top-0 left-0 right-0 bottom-0`, slideAnimation]}>
@@ -52,6 +84,7 @@ function RegisterScreen({currentScreen, targetScreen, navigation }) {
                  style={tw`self-center w-100 h-60`}
                 />
                 <Text style={tw`text-[#54C2B5] text-9 text-center font-bold`}>Sign Up</Text>
+                
                  <Formik
                   initialValues={initialValues}
                   onSubmit={(values) => onSubmit(values)}
@@ -68,49 +101,49 @@ function RegisterScreen({currentScreen, targetScreen, navigation }) {
                           {
                             errors && 
                             (
-                                errors.fullName && touched.fullName && values.fullName.trim().length == 0 ||
-                                errors.emailAddress && touched.emailAddress && values.emailAddress.trim().length == 0 ||
-                                errors.telNumber && touched.telNumber && values.telNumber.trim().length == 0 ||
+                                errors.name && touched.name && values.name.trim().length == 0 ||
+                                errors.email && touched.email && values.email.trim().length == 0 ||
+                                errors.telephone && touched.telephone && values.telephone.trim().length == 0 ||
                                 errors.password && touched.password && values.password.trim().length == 0 ||
                                 errors.bloodGroup && touched.bloodGroup && values.bloodGroup.trim().length == 0 ||
                                 errors.confirmPassword && touched.confirmPassword && values.confirmPassword.trim().length == 0
                             ) && <Text style={tw`text-red-600`}>* Required</Text>
                           }
                             <FormInput 
-                              placeholder="Full Name"
+                              placeholder="name"
                               type="text"
-                              value={values.fullName}
-                              onChange={handleChange("fullName")}
-                              onBlur={handleBlur("fullName")}
-                              name="default"
+                              value={values.name}
+                              onChange={handleChange("name")}
+                              onBlur={handleBlur("name")}
+                              name="name"
                               icon={<MaterialIcons name="edit" size={24} style={tw`text-[#8B8989]`} />}
                             />
                             {
-                                errors.fullName && touched.fullName && <Text style={tw`text-red-600 mt-2`}>{errors.fullName}</Text>
+                                errors.name && touched.name && <Text style={tw`text-red-600 mt-2`}>{errors.name}</Text>
                             }
                             <FormInput 
-                              placeholder="Email Address"
+                              placeholder="Email"
                               type="text"
                               value={values.emailAddress}
-                              onChange={handleChange("emailAddress")}
-                              onBlur={handleBlur("emailAddress")}
-                              name="email-address"
+                              onChange={handleChange("email")}
+                              onBlur={handleBlur("email")}
+                              name="email"
                               icon={<MaterialIcons name="email" size={24} style={tw`text-[#8B8989]`} />}
                             />
                             {
-                                errors.emailAddress && touched.emailAddress && <Text style={tw`text-red-600 mt-2`}>{errors.emailAddress}</Text>
+                                errors.email && touched.email && <Text style={tw`text-red-600 mt-2`}>{errors.email}</Text>
                             }
                             <FormInput 
                                 placeholder="Telephone"
                                 type="tel"
-                                value={values.telNumber}
-                                onChange={handleChange("telNumber")}
-                                onBlur={handleBlur("telNumber")}
+                                value={values.telephone}
+                                onChange={handleChange("telephone")}
+                                onBlur={handleBlur("telephone")}
                                 name="phone-pad"
                                 icon={<MaterialIcons name="phone" size={24} style={tw`text-[#8B8989]`} />}
                             />
                             {
-                                errors.telNumber && touched.telNumber && <Text style={tw`text-red-600 mt-2`}>{errors.telNumber}</Text>
+                                errors.telephone && touched.tel && <Text style={tw`text-red-600 mt-2`}>{errors.telephone}</Text>
                             }
                             <FormInput 
                                 placeholder="Blood Group"

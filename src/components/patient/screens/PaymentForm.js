@@ -8,23 +8,31 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { validationSchema } from '../../../utils/validation/registerValidation'
 import FormInput from "../../inputs/FormInput";
 import PrimaryButton from "../../buttons/PrimaryButton";
+import {useRoute} from "@react-navigation/native"
 
 
 function PaymentForm(){
+    const route = useRoute();
+    if (!route.params) {
+      console.error('No parameters provided to the route');
+      return;
+    }
+    const { price } = route.params || { price: '0' };
+    console.log('Price:', price); 
     const initialValues = {
-        fullName: "",
-        telNumber: ""
+        quantity: "",
+        telephone: "",
+        quantity: 1,
     }
     const onSubmit = (values) => {}
     return(
         <>  
             <View style={tw `p-5 rounded-lg w-full h-full`}>
             <View style={tw `ml-5.5`}>
-                <Text style={tw `text-5xl pt-7 mb-5 text-[#CF3304] font-bold`}>DH</Text>
-                <Text style={tw`text-[#808080] text-left text-5 absolute left-[-4] top-19 pl-1 font-bold`}>DonorHub</Text>
-             
-             </View>
-            <Text style={tw `text-[30px] mb-7  pt-10 self-center text-[#54C2B5] font-bold`}>PAYMENT</Text>
+                <Text style={tw `text-5xl pt-4 mb-2 text-[#CF3304] font-bold`}>DH</Text>
+                <Text style={tw`text-[#808080] text-left text-5 absolute left-[-4] top-14 pl-1 font-bold`}>DonorHub</Text>
+            </View>
+            <Text style={tw `text-[30px] mb-7 pt-5 self-center text-[#54C2B5] font-bold`}>PAYMENT</Text>
             <Formik
                   initialValues={initialValues}
                   onSubmit={(values) => onSubmit(values)}
@@ -41,40 +49,36 @@ function PaymentForm(){
                           {
                             errors && 
                             (
-                                errors.fullName && touched.fullName && values.fullName.trim().length == 0 ||
-                                errors.emailAddress && touched.emailAddress && values.emailAddress.trim().length == 0 ||
-                                errors.telNumber && touched.telNumber && values.telNumber.trim().length == 0 ||
-                                errors.password && touched.password && values.password.trim().length == 0 ||
-                                errors.bloodGroup && touched.bloodGroup && values.bloodGroup.trim().length == 0 ||
-                                errors.confirmPassword && touched.confirmPassword && values.confirmPassword.trim().length == 0
+                                errors.quantity && touched.quantity && values.quantity.trim().length == 0 ||
+                                errors.telephone && touched.telephone && values.telephone.trim().length == 0
                             ) && <Text style={tw`text-red-600`}>* Required</Text>
                           }
                <PaymentInput 
-                    Amount="25000"
+                    Amount={price * values.quantity}
                 /> 
                 <FormInput 
-                        placeholder="Full Name"
-                        type="text"
-                        value={values.fullName}
-                        onChange={handleChange("fullName")}
-                        onBlur={handleBlur("fullName")}
+                        placeholder="Quantity"
+                        type="numeric"
+                        value={values.quantity}
+                        onChange={handleChange("quantity")}
+                        onBlur={handleBlur("quantity")}
                         name="default"
-                        icon={<MaterialIcons name="edit" size={24} style={tw`text-[#8B8989]`} />}
+                        icon={<MaterialIcons name="production-quantity-limits" size={24} style={tw`text-[#8B8989]`} />}
                     />
                     {
-                        errors.fullName && touched.fullName && <Text style={tw`text-red-600 mt-2`}>{errors.fullName}</Text>
+                        errors.quantity && touched.quantity && <Text style={tw`text-red-600 mt-2`}>{errors.quantity}</Text>
                     }
                     <FormInput 
                         placeholder="Telephone"
                         type="tel"
-                        value={values.telNumber}
-                        onChange={handleChange("telNumber")}
-                        onBlur={handleBlur("telNumber")}
+                        value={values.telephone}
+                        onChange={handleChange("telephone")}
+                        onBlur={handleBlur("telephone")}
                         name="phone-pad"
                         icon={<MaterialIcons name="phone" size={24} style={tw`text-[#8B8989]`} />}
                     />
                     {
-                        errors.telNumber && touched.telNumber && <Text style={tw`text-red-600 mt-2`}>{errors.telNumber}</Text>
+                        errors.telephone && touched.telephone && <Text style={tw`text-red-600 mt-2`}>{errors.telephone}</Text>
                     }
                <PrimaryButton
                     onPress={handleSubmit}
@@ -83,7 +87,7 @@ function PaymentForm(){
               </>
             )}
             </Formik>
-                <View style={tw `flex-row pt-15 justify-center`}>
+                <View style={tw `flex-row pt-10 justify-center`}>
                 <Text style={tw `text-[#000000] mr-3`}>Powered by</Text>
                 <Image source={require('../../../../assets/images/orange.png')} style={{height:40, width:40}}/>
                         
@@ -92,8 +96,7 @@ function PaymentForm(){
                 </View>
                 <View >
                 </View>
-              </View>
-           
+              </View>       
         </>
     );
 } 

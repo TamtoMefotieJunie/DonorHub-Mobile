@@ -21,7 +21,7 @@ const Stack = createStackNavigator();
 
 const Donor = () => {
   return (
-    <NavigationContainer>
+<>
       <StatusBar style="light" />
       <Drawer.Navigator
         screenOptions={({ navigation }) => ({
@@ -46,7 +46,7 @@ const Donor = () => {
         <Drawer.Screen name='Profile' component={Profile} />
         <Drawer.Screen name='Notification' component={Notification}/>
       </Drawer.Navigator>
-    </NavigationContainer>
+    </>
   );
 };
 

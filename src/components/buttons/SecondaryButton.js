@@ -2,14 +2,15 @@ import React,{useState} from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import tw from "twrnc"
 
-function SecondaryButton({name,style, navigation}) {
+function SecondaryButton({name,style,onPress, navigation}) {
   const [isPressed, setIsPressed] = useState(false);
 
     return (
       <>
         <View style={tw`mt-1 pl-2 pb-2 ${style}`}>
           <TouchableOpacity
-          onPress = {() => navigation.navigate("Payment")}
+          onPress = {onPress}
+          navigation={navigation}
            style={[
             tw`p-2 w-[25%] rounded-3xl font-bold `,
             isPressed ? tw`bg-[#54C2B5]` : tw` bg-[#CF3304]`,
