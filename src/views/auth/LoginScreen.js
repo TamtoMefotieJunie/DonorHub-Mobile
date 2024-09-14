@@ -9,8 +9,12 @@ import PrimaryButton from '../../components/buttons/PrimaryButton'
 import { Formik, useFormik } from 'formik'
 import * as Yup from "yup"
 import { useRoute } from '@react-navigation/native';
+// import {API_URL} from "@env"
+import config from '../../../config'
 
 function LoginScreen({navigation}) {
+  console.log('API URL:', config);
+  
   const route = useRoute();
   if (!route.params) {
     console.error('No parameters provided to the route');
@@ -29,7 +33,7 @@ console.log('Route parameters:', route.params);
     emailMatricle: "", password: ""
   }
 
-  const API_URL = "http://192.168.208.157:8080";
+  const API_URL = config.API_URL;
   const onSubmit = (values) => {
     console.log("string");
     let body = JSON.stringify(values);

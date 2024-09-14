@@ -9,7 +9,7 @@ function DonorScreen({navigation, route}) {
     const [newMessage, setNewMessage] = useState("")
     const [messages, setMessages] = useState([
         {
-            message: "Hello Doctor",
+            message: "Hello sir",
             incoming: false,
             time: new Date().getHours()+ ":" + new Date().getMinutes()
         },

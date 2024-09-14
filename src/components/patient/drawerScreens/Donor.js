@@ -1,73 +1,90 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Alert, ScrollView, Text, TouchableOpacity, View,Image, ImageBackground } from 'react-native'
 import tw from "twrnc"
 import ContactCard from '../cards/ContactCard'
 import {MaterialIcons,MaterialCommunityIcons,FontAwesome6} from "@expo/vector-icons"
 import { Modal } from 'react-native-paper'
-import SecondaryButton from '../../buttons/SecondaryButton'
-import TertiaryButton from '../../buttons/TertiaryButton'
+import config from '../../../../config'
+import image from "../../../../assets/images/profile.png"
 
 
 function Donor({navigation}) {
   const [donor, setDonor] = useState([
-    {
-      name:"Leonel Jugale",
-      numberUnRead:5,
-      image: <Image source={require("../../../../assets/images/profile.png")} resizeMode="cover" style={tw `h-19 w-20  rounded-full`}/>,
-      Address:"Melen",
-       bloodgroup:"A+"
-  },
-  {
-    name:"Richmond Ngwese",
-    numberUnRead:3,
-    image: <Image source={require("../../../../assets/images/profile.png")} resizeMode="cover" style={tw `h-19 w-20  rounded-full`}/>,
-    Address:"Melen",
-    bloodgroup:"A+"
-},
-{
-  name:"Franck cyrina",
-  numberUnRead:2,
-  image:<Image source={require("../../../../assets/images/profile.png")} resizeMode="cover" style={tw `h-19 w-20  rounded-full`}/>,
-  Address:"Melen",
-  bloodgroup:"A+"
-},
-{
-  name:"Seraphita Ange",
-  numberUnRead:3,
-  image: <Image source={require("../../../../assets/images/profile.png")} resizeMode="cover" style={tw `h-19 w-20  rounded-full`}/>,
-  Address:"Melen",
-  bloodgroup:"A+"
-},
-{
-name:"Daniel Ndabose",
-numberUnRead:2,
-image: <Image source={require("../../../../assets/images/profile.png")} resizeMode="cover" style={tw `h-19 w-20  rounded-full`}/>,
-Address:"Melen",
-bloodgroup:"A+"
-},
-{
-  name:"Auriol Sopning",
-  numberUnRead:3,
-  image: <Image source={require("../../../../assets/images/profile.png")} resizeMode="cover" style={tw `h-19 w-20  rounded-full`}/>,
-  Address:"Melen",
+//     {
+//       name:"Leonel Jugale",
+//       numberUnRead:5,
+//       image: <Image source={require("../../../../assets/images/profile.png")} resizeMode="cover" style={tw `h-19 w-20  rounded-full`}/>,
+//       Address:"Melen",
+//        bloodgroup:"A+"
+//   },
+//   {
+//     name:"Richmond Ngwese",
+//     numberUnRead:3,
+//     image: <Image source={require("../../../../assets/images/profile.png")} resizeMode="cover" style={tw `h-19 w-20  rounded-full`}/>,
+//     Address:"Melen",
+//     bloodgroup:"A+"
+// },
+// {
+//   name:"Franck cyrina",
+//   numberUnRead:2,
+//   image:<Image source={require("../../../../assets/images/profile.png")} resizeMode="cover" style={tw `h-19 w-20  rounded-full`}/>,
+//   Address:"Melen",
+//   bloodgroup:"A+"
+// },
+// {
+//   name:"Seraphita Ange",
+//   numberUnRead:3,
+//   image: <Image source={require("../../../../assets/images/profile.png")} resizeMode="cover" style={tw `h-19 w-20  rounded-full`}/>,
+//   Address:"Melen",
+//   bloodgroup:"A+"
+// },
+// {
+// name:"Daniel Ndabose",
+// numberUnRead:2,
+// image: <Image source={require("../../../../assets/images/profile.png")} resizeMode="cover" style={tw `h-19 w-20  rounded-full`}/>,
+// Address:"Melen",
+// bloodgroup:"A+"
+// },
+// {
+//   name:"Auriol Sopning",
+//   numberUnRead:3,
+//   image: <Image source={require("../../../../assets/images/profile.png")} resizeMode="cover" style={tw `h-19 w-20  rounded-full`}/>,
+//   Address:"Melen",
   
-  bloodgroup:"A+"
-},
-{
-name:"Samira Domche",
-numberUnRead:2,
-image: <Image source={require("../../../../assets/images/profile.png")} resizeMode="cover" style={tw `h-19 w-20  rounded-full`}/>,
-Address:"Melen",
-  bloodgroup:"A+"
-},
-{
-  name:"Nono Rufus",
-  numberUnRead:3,
-  image: <Image source={require("../../../../assets/images/profile.png")} resizeMode="cover" style={tw `h-19 w-20  rounded-full`}/>,
-  Address:"Melen",
-}
+//   bloodgroup:"A+"
+// },
+// {
+// name:"Samira Domche",
+// numberUnRead:2,
+// image: <Image source={require("../../../../assets/images/profile.png")} resizeMode="cover" style={tw `h-19 w-20  rounded-full`}/>,
+// Address:"Melen",
+//   bloodgroup:"A+"
+// },
+// {
+//   name:"Nono Rufus",
+//   numberUnRead:3,
+//   image: <Image source={require("../../../../assets/images/profile.png")} resizeMode="cover" style={tw `h-19 w-20  rounded-full`}/>,
+//   Address:"Melen",
+// }
 
 ])
+const API_URL = config.API_URL;
+useEffect( () => {
+fetch(`${API_URL}/auth/getAll/Role/${config.role}`,{
+  method:"GET"
+})
+.then(async (response) => {
+  if(response.ok){
+    console.log("donors fetched successfully")
+    const result = await response.json();
+    console.log(result.data);
+    setDonor(result.data)
+  }
+})
+.catch((error)=>{
+  console.log(error)
+})
+},[])
 const [enteredDonor, setEnteredDonor] = useState("")
 const handleSearchDonor = () => {}
 const handleOpenSingleDonor = (donor) => {
@@ -92,20 +109,20 @@ const handleOpenModal = (donor) => {
       <Text style={tw`text-6 text-[#54C2B5] ml-4 mt-4 font-semibold text-center`}>Explore all donors</Text>
     </View>
 
-    <ScrollView showsVerticalScrollIndicator={false}>
+    <ScrollView showsVerticalScrollIndicator={false} style={tw`h-full`}>
         {donor?.map((singleDonor, index) => (
           <ContactCard
             key={index}
             name={singleDonor.name}
             numberUnRead={singleDonor.numberUnRead}
-            image={singleDonor.image}
-            bloodgroup={singleDonor.bloodgroup}
-            Address={singleDonor.Address}
+            image={<Image source={require("../../../../assets/images/profile.png")} resizeMode="cover" style={tw `h-19 w-20  rounded-full`}/>}
+            bloodgroup={singleDonor.bloodGroup}
+            Address={singleDonor.address}
             onPress={() => handleOpenModal(singleDonor)}
           />
         ))}
       </ScrollView>
-
+     
       <Modal
         visible={modalOpen}
         onDismiss={() => setModalOpen(false)}
@@ -120,16 +137,25 @@ const handleOpenModal = (donor) => {
             {selectedDonor && (
               <View>
                 <View  style={tw`text-right mb-4 flex flex-row justify-between items-center`}>
-                  {selectedDonor.image}
+                  <View>
+                  <Image 
+                        source={
+                          // selectedDonor.image ? { uri: selectedDonor.image} : 
+                        require("../../../../assets/images/profile.png")} 
+                        resizeMode="cover" 
+                        style={tw`h-19 w-20 rounded-full`}
+                    />
+                    {/* {selectedDonor.image} */}
+                  </View>
                   <View style={tw ` border-[#CF3304] pr-1 border items-center flex flex-row justify-center h-15 w-15 rounded-full`}>
-                    <Text style={tw`text-6 font-bold`}> {selectedDonor.bloodgroup}</Text>
+                    <Text style={tw`text-6 font-bold`}> {selectedDonor.bloodGroup}</Text>
                    </View>
                  
                 </View>
                 <Text style={tw`text-lg font-bold mb-2`}>{selectedDonor.name}</Text>
                 <View  style={tw`text-right mb-4 flex flex-row justify-start items-center`}>
                   <FontAwesome6 name="location-dot" size={24} color="#CF3304" />
-                  <Text style={tw`text-4 font-semibold ml-4`}>{selectedDonor.Address}</Text>
+                  <Text style={tw`text-4 font-semibold ml-4`}>{selectedDonor.address}</Text>
                 </View>
                 <TouchableOpacity
                     // onPress={onPress}

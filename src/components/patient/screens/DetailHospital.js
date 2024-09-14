@@ -4,6 +4,7 @@ import tw from "twrnc"
 import BloodCard from '../cards/BloodCard'
 import { ScrollView } from 'react-native-gesture-handler'
 import { useRoute } from '@react-navigation/native';
+import config from '../../../../config'
 
 function DetailHospital({ navigation }) {
   const [bloodPacks, setBloodPacks] = useState([]);
@@ -15,7 +16,7 @@ function DetailHospital({ navigation }) {
   }
   const { hospitalId } = route.params; 
   console.log('Route parameters:', route.params);
-  const API_URL = "http://192.168.208.157:8080";
+  const API_URL = config.API_URL;;
   useEffect(() => {
     console.log("string");
     fetch(`${API_URL}/blood/hospital/allpacks/${hospitalId}`, {

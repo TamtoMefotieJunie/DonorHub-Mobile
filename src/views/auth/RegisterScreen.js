@@ -7,6 +7,7 @@ import {MaterialIcons} from "@expo/vector-icons"
 import { validationSchema } from '../../utils/validation/registerValidation'
 import PrimaryButton from '../../components/buttons/PrimaryButton';
 import { useRoute } from '@react-navigation/native';
+import config from '../../../config'
 
 function RegisterScreen({currentScreen, targetScreen, navigation }) {
         const route = useRoute();
@@ -43,7 +44,7 @@ function RegisterScreen({currentScreen, targetScreen, navigation }) {
         bloodGroup:"",
         telephone: ""
     }
-    const API_URL = "http://192.168.130.157:8080";
+    const API_URL = config.API_URL;;
     const onSubmit = (values) => {
       console.log("string");
       let body = JSON.stringify(values);

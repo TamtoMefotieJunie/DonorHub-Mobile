@@ -9,6 +9,7 @@ import { validationSchema } from '../../../utils/validation/registerValidation'
 import FormInput from "../../inputs/FormInput";
 import PrimaryButton from "../../buttons/PrimaryButton";
 import {useRoute} from "@react-navigation/native"
+import config from '../../../../config'
 
 
 function PaymentForm(){

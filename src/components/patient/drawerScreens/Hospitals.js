@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Alert, ScrollView, Text, TextInput, View } from 'react-native'
-import { SelectList } from 'react-native-dropdown-select-list'
+import config from '../../../../config'
 import tw from "twrnc"
 import {MaterialIcons} from "@expo/vector-icons"
 import HospitalCard from '../cards/BankCard'
@@ -8,7 +8,7 @@ import HospitalCard from '../cards/BankCard'
 function Hospital({navigation}) {
   const [hospital,setHospital] = useState([]);
   
-  const API_URL = "http://192.168.208.157:8080";
+  const API_URL = config.API_URL;;
   useEffect(() => {
       console.log("string");
       fetch(`${API_URL}/banks/allHospital`, {
