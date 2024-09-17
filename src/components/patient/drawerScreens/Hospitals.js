@@ -21,7 +21,10 @@ function Hospital({navigation}) {
             console.log(data)
             setHospital(data.data) 
             data.data.forEach(hospital => {
-              console.log(hospital._id); // Log each hospital's ID
+             const hospitalLongitude = hospital.longitude
+             const hospitalLatitude = hospital.latitude
+              console.log("the hospital with id",hospital._id,"is:",hospitalLongitude); 
+              console.log("the hospital with id",hospital._id,"is:",hospitalLatitude); 
           }); 
         } else {
             const errorMessage = await response.text();
@@ -32,8 +35,12 @@ function Hospital({navigation}) {
 
   
   const handleFilter = () => {}
-  const handleViewMap = () => {
-    navigation.navigate("Localisation")
+  const handleViewMap = ({ hospitalLatitude,hospitalLongitude }) => {
+    console.log('Navigating with:', hospitalLatitude, hospitalLongitude);
+    navigation.navigate("Localisation", {
+      hospitalLatitude,
+      hospitalLongitude
+  });
   }
   const [enteredHospital, setEnteredHospital] = useState("")
 const handleSearchHospital = () => {}
@@ -68,7 +75,7 @@ const handleOpenSingleHospital = (hospitalId) => {
                       hospital.map((hospital, index) => ( 
                           <HospitalCard
                               key={index}
-                              onPress={handleViewMap}
+                              onPress={() => handleViewMap({ hospitalLatitude: hospital.latitude, hospitalLongitude: hospital.longitude })}
                               name={hospital.name}
                               onPress1={() => handleOpenSingleHospital(hospital._id)}
                               location={hospital.location}
