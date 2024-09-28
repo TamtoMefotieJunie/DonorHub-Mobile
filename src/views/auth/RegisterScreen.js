@@ -10,9 +10,11 @@ import { useRoute } from '@react-navigation/native';
 import config from '../../../config'
 
 function RegisterScreen({currentScreen, targetScreen, navigation }) {
+  console.log("in register")
         const route = useRoute();
         const { id } = route.params;
         const [animation] = React.useState(new Animated.Value(0));
+        console.log(id)
       
         const handlePress = () => {
           Animated.timing(animation, {
@@ -21,7 +23,7 @@ function RegisterScreen({currentScreen, targetScreen, navigation }) {
             useNativeDriver: true,
           }).start(() => {
             // Navigate to the target screen
-            navigation.navigate('Login');
+            navigation.navigate('Login',id);
           });
         };
       
@@ -44,8 +46,9 @@ function RegisterScreen({currentScreen, targetScreen, navigation }) {
         bloodGroup:"",
         telephone: ""
     }
-    const API_URL = config.API_URL;;
+    const API_URL = config.API_URL;
     const onSubmit = (values) => {
+      console.log("Form Submitted with values: ", values);
       console.log("string");
       let body = JSON.stringify(values);
       console.log("Sending request to:", `${API_URL}/user/register`, "with body:", body);
@@ -53,6 +56,8 @@ function RegisterScreen({currentScreen, targetScreen, navigation }) {
         ...values,
         role: id
     };
+    
+    console.log("Sending request to:", `${API_URL}/auth/register`, "with body:", submittedValues);
       fetch(`${API_URL}/auth/register`, {
         method: "POST",
         headers: {
@@ -88,7 +93,7 @@ function RegisterScreen({currentScreen, targetScreen, navigation }) {
                 
                  <Formik
                   initialValues={initialValues}
-                  onSubmit={(values) => onSubmit(values)}
+                  onSubmit={ onSubmit}
                   validationSchema={validationSchema}>
                     {({
                         handleSubmit,

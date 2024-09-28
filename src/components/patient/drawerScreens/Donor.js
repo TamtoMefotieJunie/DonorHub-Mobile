@@ -4,8 +4,12 @@ import tw from "twrnc"
 import ContactCard from '../cards/ContactCard'
 import {MaterialIcons,MaterialCommunityIcons,FontAwesome6} from "@expo/vector-icons"
 import { Modal } from 'react-native-paper'
+import { Formik } from 'formik';
+import * as Yup from 'yup';
 import config from '../../../../config'
-import image from "../../../../assets/images/profile.png"
+import TertiaryButton from '../../buttons/TertiaryButton'
+import FormInput from '../../inputs/FormInput'
+
 
 
 function Donor({navigation}) {
@@ -94,12 +98,86 @@ const [isPressed,setIsPressed] = useState(false)
 const [modalOpen, setModalOpen] = useState(false);
 const [selectedDonor, setSelectedDonor] = useState(null);
 const [contactModalOpen, setContactModalOpen] = useState(false);
+const [modalContent, setModalContent] = useState('MethodContent');
 
 const handleOpenModal = (donor) => {
   setSelectedDonor(donor);
   setModalOpen(true);
 };
 
+const showModalWithMethodContent = () => {
+  setModalContent('MethodContent');
+  setContactModalOpen(true);
+};
+const showModalWithMessageContent = () => {
+  setModalContent('MessageContent');
+  setContactModalOpen(true);
+};
+
+const MethodContent = () => (
+  <View style={tw`flex justify-center items-center`}>
+    <Text style={tw`text-lg font-bold mb-7`}>Choose Contact Method</Text>
+    <TouchableOpacity
+      style={tw`p-2 w-full mb-2 rounded-lg bg-[#54C2B5]`}
+      onPress={() => showModalWithMessageContent()}
+    >
+      <Text style={tw`text-center text-white text-4`}>Mail</Text>
+    </TouchableOpacity>
+    <TouchableOpacity
+      style={tw`p-2 w-full rounded-lg bg-[#54C2B5]`}
+      onPress={() => alert("Chat selected")}
+    >
+      <Text style={tw`text-center text-white text-4`}>Chat</Text>
+    </TouchableOpacity>
+  </View>
+);
+const MessageContent = () => (
+  
+  <Formik
+    initialValues={{ message: '' }}
+    onSubmit={(values) => {
+      console.log('Form submitted with values:', values);
+      const submittedValues = {
+        message:values.message,
+        email:selectedDonor.email
+    };
+      fetch(`${API_URL}/email/contact-friend`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submittedValues),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        console.log(response);
+        setContactModalOpen(false);
+    })
+    .catch(error => {
+        Alert.alert('Error sending email:', error.message);
+    });
+      // showModalWithMethodContent();
+    }}
+  >
+    {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
+      <View>
+        <Text style={tw`text-lg font-bold self-center`}>Message Content</Text>
+        <FormInput
+          placeholder="Enter your message"
+          onChange={handleChange('message')}
+          onBlur={handleBlur('message')}
+          value={values.message}
+        />
+        {touched.message && errors.message && (
+          <Text style={{ color: 'red' }}>{errors.message}</Text>
+        )}
+        <TertiaryButton name="Send" onPress={handleSubmit} />
+      </View>
+    )}
+  </Formik>
+);
 
   return (
     <>
@@ -189,18 +267,11 @@ const handleOpenModal = (donor) => {
             <TouchableOpacity onPress={() => setContactModalOpen(false)}>
               <MaterialCommunityIcons name="close-circle" size={30} color="#54C2B5" style={tw`text-right mb-2`} />
             </TouchableOpacity>
-            <View style={tw`flex justify-center items-center`}>
-              <Text style={tw`text-lg font-bold mb-7`}>Choose Contact Method</Text>
-              <TouchableOpacity style={tw`p-2 w-full mb-2 rounded-lg bg-[#54C2B5]`}
-              >
-                <Text style={tw`text-center text-white text-4`}>Mail</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={tw`p-2 w-full rounded-lg bg-[#54C2B5]`}
-              onPress={()=> handleOpenSingleDonor(selectedDonor)}
-              >
-                <Text style={tw`text-center text-white text-4`}>Chat</Text>
-              </TouchableOpacity>
-            </View>
+            <View>
+              
+              {modalContent === 'MethodContent' && <MethodContent/>}
+              {modalContent === 'MessageContent' && <MessageContent modalContent="This is Content B"/>}
+           </View>
           </View>
         </View>
       </Modal>

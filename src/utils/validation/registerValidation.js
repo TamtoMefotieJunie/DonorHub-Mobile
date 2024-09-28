@@ -5,10 +5,7 @@ export const validationSchema =  Yup.object().shape({
     name:  Yup.string()
                 .required("*")
                 .matches(/^[A-Za-z\s]+$/i, "Only letters and whitespaces are allowed"),
-    quantity: Yup.number()
-                .required("*")
-                .positive("Quantity must be a positive number")
-                .integer("Quantity must be an integer"),
+    
     email: Yup.string()
                     .email("Enter a valid email address")
                     .required("*"),

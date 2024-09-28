@@ -30,7 +30,7 @@ console.log('Route parameters:', route.params);
                   .required("*")
     })
   const initialValues = {
-    emailMatricle: "", password: ""
+    email: "", password: ""
   }
 
   const API_URL = config.API_URL;
@@ -104,7 +104,7 @@ console.log('Route parameters:', route.params);
                     isValid}) => (
                 <>
                 {
-                    errors.emailMatricle && errors.password && <Text style={tw`text-red-600`}>* Required</Text>
+                    errors.email && errors.password && <Text style={tw`text-red-600`}>* Required</Text>
                 }
               <FormInput 
                icon={<MaterialIcons name='email' size={24} style={tw`text-[#8B8989]`} />}
@@ -126,7 +126,7 @@ console.log('Route parameters:', route.params);
                placeholder="Password"
               />
               {
-                errors.password && touched.emailMatricle && <Text style={tw`text-red-600 mb-3`}>{errors.password}</Text>
+                errors.password && touched.password && <Text style={tw`text-red-600 mb-3`}>{errors.password}</Text>
               }
              <TouchableOpacity style={tw`mt-5 w-full`}>
                     <Text style={tw`text-4 text-right text-[#54C2B5] font-semibold`}>Forgot password ?</Text>

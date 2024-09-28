@@ -5,7 +5,7 @@ import PaymentInput from "../../inputs/PaymentInput";
 import tw from "twrnc";
 import { StyleSheet, Text,Image, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { validationSchema } from '../../../utils/validation/registerValidation'
+import { validationSchema } from '../../../utils/validation/paymentValidation'
 import FormInput from "../../inputs/FormInput";
 import PrimaryButton from "../../buttons/PrimaryButton";
 import {useRoute} from "@react-navigation/native"
@@ -21,7 +21,7 @@ function PaymentForm(){
     const { price } = route.params || { price: '0' };
     console.log('Price:', price); 
     const initialValues = {
-        quantity: "",
+       
         telephone: "",
         quantity: 1,
     }
