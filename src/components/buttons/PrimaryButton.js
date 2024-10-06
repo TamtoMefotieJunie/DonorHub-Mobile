@@ -8,7 +8,7 @@ function PrimaryButton({ name, onPress }) {
   return (
     <View style={tw`mt-5`}>
       <TouchableOpacity
-        onPress={onPress}  // Use only the onPress prop here
+        onPress={onPress} 
         style={[
           tw`p-4 w-full rounded-5`,
           isPressed ? tw`bg-[#439D91]` : tw`bg-[#54C2B5]`,

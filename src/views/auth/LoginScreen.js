@@ -13,6 +13,17 @@ import { useRoute } from '@react-navigation/native';
 import config from '../../../config'
 
 function LoginScreen({navigation}) {
+  const showAlert = () => {
+    SweetAlert.showAlertWithOptions({
+      title: 'Alert Title',
+      subTitle: 'This is a subtitle!',
+      confirmButtonTitle: 'OK',
+      style: 'warning', // options: 'success', 'warning', 'error', 'info', 'normal'
+    },
+    (callback) => {
+      console.log('Alert closed');
+    });
+  };
   console.log('API URL:', config);
   
   const route = useRoute();
@@ -52,6 +63,7 @@ console.log('Route parameters:', route.params);
   .then(async (response) => {
       if (response.ok) {
           console.log("User logged in successfully");
+          
           const data = await response.json(); 
           const roleName = data.user.role.name;
           if(roleName === 'Donor'){
@@ -61,7 +73,7 @@ console.log('Route parameters:', route.params);
           }else{
             navigation.navigate('technician',id); 
           }
-
+          showAlert();
             
       } else {
           const errorMessage = await response.text();

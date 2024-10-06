@@ -1,7 +1,7 @@
 import Constants from 'expo-constants'
 
 const config = {
-    API_URL: "http://192.168.11.157:8080",
+    API_URL: "http://192.168.185.157:8080",
     role:"66d1b01a13201b49b440af16"
 };
 
